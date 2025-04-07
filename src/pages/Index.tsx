@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 import AnimatedCursor from '@/components/AnimatedCursor';
 import Portfolio from '@/components/Portfolio';
 import Testimonials from '@/components/Testimonials';
+import { ServiceItem } from '@/components/ServicesData';
 
 // Company data
 const portfolioData = [
@@ -73,7 +74,7 @@ const testimonialData = [
   }
 ];
 
-const serviceData = [
+const serviceData: ServiceItem[] = [
   { title: "Web Development" },
   { title: "Mobile Development" },
   { title: "UI/UX Design" },

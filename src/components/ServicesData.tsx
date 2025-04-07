@@ -1,9 +1,12 @@
 
+import React from 'react';
+
 // Types for the service data
 export interface ServiceItem {
   title: string;
   icon?: React.ReactNode;
   description?: string;
+  imageUrl?: string;
 }
 
 // Default descriptions for services if not provided
