@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { LinkedIn, Mail } from 'lucide-react';
+import { Linkedin, Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const [policyType, setPolicyType] = useState<'privacy' | 'terms' | 'cookie' | null>(null);
@@ -150,7 +150,7 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer" 
                 className="text-gray-400 hover:text-agency-purple transition-colors flex items-center gap-2"
               >
-                <LinkedIn className="w-5 h-5" />
+                <Linkedin className="w-5 h-5" />
                 <span>LinkedIn</span>
               </a>
             </div>
