@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -9,6 +10,7 @@ import Footer from '@/components/Footer';
 import AnimatedCursor from '@/components/AnimatedCursor';
 import Portfolio from '@/components/Portfolio';
 import Testimonials from '@/components/Testimonials';
+import SEO from '@/components/SEO';
 import { ServiceItem, getServiceIcon } from '@/components/ServicesData';
 
 // Portfolio data
@@ -85,6 +87,44 @@ const serviceData: ServiceItem[] = [
   { title: "Tech Consulting", icon: getServiceIcon("Tech Consulting") }
 ];
 
+// Structured data for services
+const servicesStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": serviceData.map((service, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Service",
+      "name": service.title,
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "DrawnOnwarD"
+      }
+    }
+  }))
+};
+
+// Structured data for portfolio
+const portfolioStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": portfolioData.map((project, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "CreativeWork",
+      "name": project.title,
+      "description": project.description,
+      "image": project.imageUrl,
+      "creator": {
+        "@type": "ProfessionalService",
+        "name": "DrawnOnwarD"
+      }
+    }
+  }))
+};
+
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -116,18 +156,44 @@ const Index = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const combinedStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "DrawnOnwarD - Professional Software Development Agency",
+    "description": "DrawnOnwarD is a leading software development agency specializing in custom web development, mobile apps, real estate websites, and UI/UX design services.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "DrawnOnwarD",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.drawnonward.org/logo.png"
+      }
+    },
+    "mainEntity": {
+      "@type": "ProfessionalService",
+      "name": "DrawnOnwarD",
+      "hasOfferCatalog": servicesStructuredData
+    }
+  };
+
   return (
-    <div className={`min-h-screen relative transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-      <AnimatedCursor />
-      <Navbar />
-      <Hero />
-      <About />
-      <Services services={serviceData} />
-      <Portfolio projects={portfolioData} />
-      <Testimonials testimonials={testimonialData} />
-      <Contact />
-      <Footer />
-    </div>
+    <HelmetProvider>
+      <SEO 
+        structuredData={combinedStructuredData}
+        canonical="https://www.drawnonward.org/"
+      />
+      <div className={`min-h-screen relative transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <AnimatedCursor />
+        <Navbar />
+        <Hero />
+        <About />
+        <Services services={serviceData} />
+        <Portfolio projects={portfolioData} />
+        <Testimonials testimonials={testimonialData} />
+        <Contact />
+        <Footer />
+      </div>
+    </HelmetProvider>
   );
 };
 
