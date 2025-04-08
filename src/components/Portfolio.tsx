@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -179,15 +178,6 @@ const Portfolio = ({ projects }: PortfolioProps) => {
                     </Badge>
                   ))}
                 </div>
-              </div>
-              
-              <div className="flex justify-end">
-                <Button 
-                  className="neo-brutalist bg-[#8E9196] text-[#1A1F2C] hover:bg-[#8E9196]/90 hover:shadow-[4px_4px_0px_0px_rgba(34,34,34,1)]"
-                >
-                  <span className="font-bold">Visit Project</span>
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </Button>
               </div>
             </div>
           </DialogContent>
