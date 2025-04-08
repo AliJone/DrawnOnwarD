@@ -99,13 +99,17 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
                       className="min-w-full px-0 md:px-4 flex justify-center"
                     >
                       <Card className="backdrop-blur-sm bg-white/80 dark:bg-gray-900/80 border-0 shadow-lg max-w-2xl transform transition-all duration-500 hover:shadow-xl">
-                        <CardContent className="pt-16 px-8 pb-8 relative">
-                          <div className="absolute -top-12 left-1/2 -translate-x-1/2">
+                        <CardContent className="pt-20 px-8 pb-8 relative">
+                          <div className="absolute -top-16 left-1/2 -translate-x-1/2">
                             <div className="relative">
                               <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 opacity-70 blur-sm"></div>
-                              <Avatar className="relative h-24 w-24 border-4 border-white shadow-md">
-                                <AvatarImage src={testimonial.imageUrl} alt={testimonial.name} className="object-cover" />
-                                <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                              <Avatar className="h-32 w-32 border-4 border-white dark:border-gray-900 shadow-md">
+                                <AvatarImage 
+                                  src={testimonial.imageUrl} 
+                                  alt={testimonial.name} 
+                                  className="object-cover h-full w-full"
+                                />
+                                <AvatarFallback className="text-2xl">{testimonial.name.charAt(0)}</AvatarFallback>
                               </Avatar>
                             </div>
                           </div>
@@ -118,12 +122,12 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
                             ))}
                           </div>
                           
-                          <p className="text-center mb-6 text-xl italic text-gray-700 dark:text-gray-200">
+                          <p className="text-center mb-8 text-xl italic text-gray-700 dark:text-gray-200">
                             "{testimonial.testimoni}"
                           </p>
                           
                           <div className="text-center">
-                            <p className="font-semibold text-lg">{testimonial.name}</p>
+                            <p className="font-semibold text-lg text-gray-900 dark:text-gray-100">{testimonial.name}</p>
                             <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.company}</p>
                           </div>
                         </CardContent>
