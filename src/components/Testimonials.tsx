@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -98,40 +97,44 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
                       key={index} 
                       className="min-w-full px-0 md:px-4 flex justify-center"
                     >
-                      <Card className="backdrop-blur-sm bg-white/80 dark:bg-gray-900/80 border-0 shadow-lg max-w-2xl transform transition-all duration-500 hover:shadow-xl">
-                        <CardContent className="pt-20 px-8 pb-8 relative">
-                          <div className="absolute -top-16 left-1/2 -translate-x-1/2">
-                            <div className="relative">
-                              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 opacity-70 blur-sm"></div>
-                              <Avatar className="h-32 w-32 border-4 border-white dark:border-gray-900 shadow-md">
-                                <AvatarImage 
-                                  src={testimonial.imageUrl} 
-                                  alt={testimonial.name} 
-                                  className="object-cover h-full w-full"
-                                />
-                                <AvatarFallback className="text-2xl">{testimonial.name.charAt(0)}</AvatarFallback>
-                              </Avatar>
+                      {/* Add margin-top to create space for the avatar */}
+                      <div className="mt-16 relative">
+                        {/* Position the avatar absolutely relative to this container */}
+                        <div className="absolute -top-16 left-1/2 -translate-x-1/2 z-10">
+                          <div className="relative">
+                            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 opacity-70 blur-sm"></div>
+                            <Avatar className="relative h-32 w-32 border-4 border-white dark:border-gray-900 shadow-md">
+                              <AvatarImage 
+                                src={testimonial.imageUrl} 
+                                alt={testimonial.name} 
+                                className="object-cover h-full w-full"
+                              />
+                              <AvatarFallback className="text-2xl">{testimonial.name.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                          </div>
+                        </div>
+                        
+                        <Card className="backdrop-blur-sm bg-white/80 dark:bg-gray-900/80 border-0 shadow-lg max-w-2xl transform transition-all duration-500 hover:shadow-xl">
+                          <CardContent className="pt-20 px-8 pb-8 relative">
+                            <Quote className="absolute top-8 left-8 h-8 w-8 text-purple-200 dark:text-purple-800 opacity-40" />
+                            
+                            <div className="flex justify-center mb-6 text-yellow-500">
+                              {[...Array(5)].map((_, i) => (
+                                <Star key={i} className="fill-current h-4 w-4" />
+                              ))}
                             </div>
-                          </div>
-                          
-                          <Quote className="absolute top-8 left-8 h-8 w-8 text-purple-200 dark:text-purple-800 opacity-40" />
-                          
-                          <div className="flex justify-center mb-6 text-yellow-500">
-                            {[...Array(5)].map((_, i) => (
-                              <Star key={i} className="fill-current h-4 w-4" />
-                            ))}
-                          </div>
-                          
-                          <p className="text-center mb-8 text-xl italic text-gray-700 dark:text-gray-200">
-                            "{testimonial.testimoni}"
-                          </p>
-                          
-                          <div className="text-center">
-                            <p className="font-semibold text-lg text-gray-900 dark:text-gray-100">{testimonial.name}</p>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.company}</p>
-                          </div>
-                        </CardContent>
-                      </Card>
+                            
+                            <p className="text-center mb-8 text-xl italic text-gray-700 dark:text-gray-200">
+                              "{testimonial.testimoni}"
+                            </p>
+                            
+                            <div className="text-center">
+                              <p className="font-semibold text-lg text-gray-900 dark:text-gray-100">{testimonial.name}</p>
+                              <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.company}</p>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
                     </div>
                   ))}
                 </div>
