@@ -62,7 +62,7 @@ const Portfolio = ({ projects }: PortfolioProps) => {
   };
   
   return (
-    <section id="portfolio" className="py-24 bg-agency-dark">
+    <section id="projects" className="py-24 bg-agency-dark">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 reveal-on-scroll">
           <div className="inline-block bg-white py-3 px-6 -rotate-1 neo-brutalist mb-4">
