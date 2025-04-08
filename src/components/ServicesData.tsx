@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Globe, Smartphone, Palette, Search, Home, Briefcase } from 'lucide-react';
 
 // Types for the service data
 export interface ServiceItem {
@@ -8,6 +9,20 @@ export interface ServiceItem {
   description?: string;
   imageUrl?: string;
 }
+
+// Get icon based on service title
+export const getServiceIcon = (title: string): React.ReactNode => {
+  const icons: Record<string, React.ReactNode> = {
+    "Web Development": <Globe className="h-6 w-6" />,
+    "Mobile Development": <Smartphone className="h-6 w-6" />,
+    "UI/UX Design": <Palette className="h-6 w-6" />,
+    "SEO": <Search className="h-6 w-6" />,
+    "Real Estate Website": <Home className="h-6 w-6" />,
+    "Tech Consulting": <Briefcase className="h-6 w-6" />
+  };
+  
+  return icons[title] || <Globe className="h-6 w-6" />;
+};
 
 // Default descriptions for services if not provided
 export const getServiceDescription = (title: string): string => {

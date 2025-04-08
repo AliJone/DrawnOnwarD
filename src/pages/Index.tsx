@@ -9,9 +9,9 @@ import Footer from '@/components/Footer';
 import AnimatedCursor from '@/components/AnimatedCursor';
 import Portfolio from '@/components/Portfolio';
 import Testimonials from '@/components/Testimonials';
-import { ServiceItem } from '@/components/ServicesData';
+import { ServiceItem, getServiceIcon } from '@/components/ServicesData';
 
-// Company data
+// Portfolio data
 const portfolioData = [
   {
     id: "asd1293uasdads1",
@@ -59,6 +59,7 @@ const portfolioData = [
   }
 ];
 
+// Testimonial data
 const testimonialData = [
   {
     name: "Saqlain Raza",
@@ -74,13 +75,14 @@ const testimonialData = [
   }
 ];
 
+// Service data with added icons
 const serviceData: ServiceItem[] = [
-  { title: "Web Development" },
-  { title: "Mobile Development" },
-  { title: "UI/UX Design" },
-  { title: "SEO" },
-  { title: "Real Estate Website" },
-  { title: "Tech Consulting" }
+  { title: "Web Development", icon: getServiceIcon("Web Development") },
+  { title: "Mobile Development", icon: getServiceIcon("Mobile Development") },
+  { title: "UI/UX Design", icon: getServiceIcon("UI/UX Design") },
+  { title: "SEO", icon: getServiceIcon("SEO") },
+  { title: "Real Estate Website", icon: getServiceIcon("Real Estate Website") },
+  { title: "Tech Consulting", icon: getServiceIcon("Tech Consulting") }
 ];
 
 const Index = () => {
