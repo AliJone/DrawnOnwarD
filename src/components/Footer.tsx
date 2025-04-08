@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
               {['About', 'Projects', 'Contact'].map((item) => (
                 <li key={item}>
                   <a 
-                    href={`#${item.toLowerCase().replace(' ', '-').replace('projects', 'projects')}`} 
+                    href={`#${item.toLowerCase()}`} 
                     className="text-gray-400 hover:text-agency-purple transition-colors"
                   >
                     {item}
