@@ -98,7 +98,7 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
                       className="min-w-full px-0 md:px-4 flex justify-center"
                     >
                       {/* Add margin-top to create space for the avatar */}
-                      <div className="mt-16 relative">
+                      <div className="mt-18 relative">
                         {/* Position the avatar absolutely relative to this container */}
                         <div className="absolute -top-16 left-1/2 -translate-x-1/2 z-10">
                           <div className="relative">
