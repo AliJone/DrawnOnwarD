@@ -85,7 +85,7 @@ const serviceContent = {
   'seo': {
     title: 'Search Engine Optimization',
     heading: 'Data-Driven SEO Strategies That Deliver Results',
-    description: 'Comprehensive SEO services to improve your website's visibility, increase organic traffic, and boost conversions.',
+    description: 'Comprehensive SEO services to improve your website\'s visibility, increase organic traffic, and boost conversions.',
     benefits: [
       'Higher rankings in search engine results',
       'Increased organic traffic to your website',
