@@ -128,7 +128,7 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-lg font-bold text-white mb-6">Company</h4>
             <ul className="space-y-3">
-              {['About', 'Projects', 'Contact'].map((item) => (
+              {['About', 'Projects', 'Testimonials', 'Contact'].map((item) => (
                 <li key={item}>
                   <a 
                     href={`#${item.toLowerCase()}`} 
@@ -164,26 +164,26 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-gray-500 mb-4 md:mb-0">
+          <div className="text-gray-400 mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} DrawnOnwarD. All rights reserved.
           </div>
           
           <div className="flex gap-6">
             <button 
               onClick={() => handleOpenPolicy('privacy')} 
-              className="text-gray-500 hover:text-agency-purple transition-colors"
+              className="text-gray-400 hover:text-agency-purple transition-colors"
             >
               Privacy Policy
             </button>
             <button 
               onClick={() => handleOpenPolicy('terms')} 
-              className="text-gray-500 hover:text-agency-purple transition-colors"
+              className="text-gray-400 hover:text-agency-purple transition-colors"
             >
               Terms of Service
             </button>
             <button 
               onClick={() => handleOpenPolicy('cookie')} 
-              className="text-gray-500 hover:text-agency-purple transition-colors"
+              className="text-gray-400 hover:text-agency-purple transition-colors"
             >
               Cookie Policy
             </button>

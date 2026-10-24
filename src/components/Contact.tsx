@@ -2,10 +2,22 @@
 import React, { useEffect, useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import ParallaxContainer from './ParallaxContainer';
-import { Linkedin, Mail } from 'lucide-react';
+import { Linkedin, Mail, Check } from 'lucide-react';
+
+// Form backend (e.g. a Formspree URL) set at build time; see .env.example
+const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
+const CONTACT_EMAIL = 'info@drawnonward.org';
+
+// The three most common objections, most common first
+const promises = [
+  'Fixed scope and quote before any work starts',
+  'Weekly demos, so you see progress every week',
+  'Senior engineers only. The people you meet are the people who build',
+];
 
 const Contact: React.FC = () => {
   const { toast } = useToast();
+  const [sending, setSending] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,15 +29,37 @@ const Contact: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you'd send this data to your backend
-    console.log('Form submitted:', formData);
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
-    setFormData({ name: '', email: '', message: '' });
+    // No endpoint configured: hand off to the visitor's mail client so no lead is lost
+    if (!FORM_ENDPOINT) {
+      const subject = encodeURIComponent(`Project roadmap request from ${formData.name}`);
+      const body = encodeURIComponent(`${formData.message}\n\nReply to: ${formData.email}`);
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+      return;
+    }
+    setSending(true);
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      toast({
+        title: "Request received!",
+        description: "We'll send your project roadmap within one business day.",
+      });
+      setFormData({ name: '', email: '', message: '' });
+    } catch {
+      toast({
+        title: "Something went wrong",
+        description: `Please email us directly at ${CONTACT_EMAIL}.`,
+        variant: 'destructive',
+      });
+    } finally {
+      setSending(false);
+    }
   };
   
   useEffect(() => {
@@ -57,7 +91,7 @@ const Contact: React.FC = () => {
             Get in <span className="highlight-text">Touch</span>
           </h2>
           <p className="text-xl text-gray-400 text-center max-w-2xl">
-            Ready to start your next digital project? Let's create something amazing together.
+            Tell us what you're building. You'll get a free project roadmap: scope, timeline and a budget range, within one business day.
           </p>
         </div>
         
@@ -70,6 +104,14 @@ const Contact: React.FC = () => {
                   <p className="text-lg text-gray-300 mb-6">
                     We're ready to discuss your ideas and turn them into reality. Reach out to us using the form or through our contact details below.
                   </p>
+                  <ul className="space-y-3">
+                    {promises.map((promise) => (
+                      <li key={promise} className="flex items-start gap-3 text-lg text-gray-300">
+                        <Check className="w-6 h-6 mt-0.5 shrink-0 text-agency-neon" />
+                        <span>{promise}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 
                 <div className="reveal-on-scroll space-y-4" style={{ transitionDelay: '100ms' }}>
@@ -77,8 +119,8 @@ const Contact: React.FC = () => {
                     <div className="w-10 h-10 rounded-full bg-agency-purple/20 flex items-center justify-center">
                       <Mail className="w-5 h-5 text-agency-purple" />
                     </div>
-                    <a href="mailto:info@drawnOnward.org" className="text-lg text-gray-300 hover:text-agency-purple transition-colors">
-                      info@drawnOnward.org
+                    <a href="mailto:info@drawnonward.org" className="text-lg text-gray-300 hover:text-agency-purple transition-colors">
+                      info@drawnonward.org
                     </a>
                   </div>
                 </div>
@@ -142,7 +184,7 @@ const Contact: React.FC = () => {
                 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                    Your Message
+                    What are you building?
                   </label>
                   <textarea
                     id="message"
@@ -152,16 +194,20 @@ const Contact: React.FC = () => {
                     required
                     rows={5}
                     className="w-full px-4 py-3 rounded-md border-2 border-gray-300 focus:border-agency-purple focus:outline-none"
-                    placeholder="Tell us about your project..."
+                    placeholder="Tell us about your project, timeline and goals..."
                   />
                 </div>
                 
                 <button
                   type="submit"
-                  className="w-full py-3 px-6 bg-agency-purple text-white font-medium rounded-md hover:bg-purple-700 transition-colors"
+                  disabled={sending}
+                  className="w-full py-3 px-6 bg-violet-600 text-white font-medium rounded-md hover:bg-violet-700 transition-colors disabled:opacity-60"
                 >
-                  Send Message
+                  {sending ? 'Sending...' : 'Get my free roadmap'}
                 </button>
+                <p className="text-center text-sm text-gray-500">
+                  No commitment. We reply within one business day.
+                </p>
               </div>
             </form>
           </div>

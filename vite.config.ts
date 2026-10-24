@@ -4,7 +4,9 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode, isSsrBuild }) => ({
+  // The SSR pass only feeds scripts/prerender.mjs; no need to copy public/ twice
+  publicDir: isSsrBuild ? false : 'public',
   server: {
     host: "::",
     port: 8080,

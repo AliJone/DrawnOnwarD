@@ -1,45 +1,24 @@
-import { useEffect, useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Quote, Star, Linkedin, ExternalLink } from 'lucide-react';
 import ParallaxContainer from './ParallaxContainer';
 
-interface Testimonial {
+export interface Testimonial {
   name: string;
   company: string;
   testimoni: string;
-  imageUrl: string;
+  imageUrl?: string;
+  linkedinUrl: string;
+  companyUrl: string;
 }
 
 interface TestimonialsProps {
   testimonials: Testimonial[];
 }
 
+// Wall of proof: every testimonial visible at once, each linked to a real
+// person and a live product so visitors can verify it themselves.
 const Testimonials = ({ testimonials }: TestimonialsProps) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  
-  useEffect(() => {
-    // Auto-rotate testimonials
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-    }, 8000);
-    
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
-
-  const handlePrevious = () => {
-    setActiveIndex((prevIndex) => 
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleNext = () => {
-    setActiveIndex((prevIndex) => 
-      (prevIndex + 1) % testimonials.length
-    );
-  };
-  
   return (
     <section id="testimonials" className="py-24 relative overflow-hidden">
       {/* Background decoration */}
@@ -54,109 +33,69 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
             Client Testimonials
           </h2>
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Hear what our clients say about working with us
+            Real founders, real products. Every name links to a LinkedIn profile and every company to a live site.
           </p>
         </div>
         
-        <div className="max-w-5xl mx-auto">
-          <ParallaxContainer speed={0.03}>
-            <div className="relative">
-              {/* Navigation buttons */}
-              <div className="absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2 z-10">
-                <Button 
-                  onClick={handlePrevious}
-                  variant="outline" 
-                  size="icon"
-                  className="rounded-full bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border-gray-200 dark:border-gray-700 shadow-md hover:bg-purple-100 dark:hover:bg-purple-900/20"
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                  <span className="sr-only">Previous</span>
-                </Button>
-              </div>
-              
-              <div className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 z-10">
-                <Button 
-                  onClick={handleNext}
-                  variant="outline" 
-                  size="icon"
-                  className="rounded-full bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border-gray-200 dark:border-gray-700 shadow-md hover:bg-purple-100 dark:hover:bg-purple-900/20"
-                >
-                  <ChevronRight className="h-5 w-5" />
-                  <span className="sr-only">Next</span>
-                </Button>
-              </div>
-            
-              {/* Testimonial cards */}
-              <div className="relative overflow-hidden px-4">
-                <div 
-                  className="flex transition-transform duration-700 ease-out"
-                  style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-                >
-                  {testimonials.map((testimonial, index) => (
-                    <div 
-                      key={index} 
-                      className="min-w-full px-0 md:px-4 flex justify-center"
-                    >
-                      {/* Add margin-top to create space for the avatar - increased margin for better spacing */}
-                      <div className="mt-20 relative">
-                        {/* Position the avatar absolutely relative to this container */}
-                        <div className="absolute -top-16 left-1/2 -translate-x-1/2 z-10">
-                          <div className="relative">
-                            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 opacity-70 blur-sm"></div>
-                            <Avatar className="relative h-32 w-32 border-4 border-white dark:border-gray-900 shadow-md">
-                              <AvatarImage 
-                                src={testimonial.imageUrl} 
-                                alt={testimonial.name} 
-                                className="object-cover h-full w-full"
-                              />
-                              <AvatarFallback className="text-2xl">{testimonial.name.charAt(0)}</AvatarFallback>
-                            </Avatar>
-                          </div>
-                        </div>
-                        
-                        <Card className="backdrop-blur-sm bg-white/80 dark:bg-gray-900/80 border-0 shadow-lg max-w-2xl transform transition-all duration-500 hover:shadow-xl">
-                          <CardContent className="pt-20 px-8 pb-8 relative">
-                            <Quote className="absolute top-8 left-8 h-8 w-8 text-purple-200 dark:text-purple-800 opacity-40" />
-                            
-                            <div className="flex justify-center mb-6 text-yellow-500">
-                              {[...Array(5)].map((_, i) => (
-                                <Star key={i} className="fill-current h-4 w-4" />
-                              ))}
-                            </div>
-                            
-                            <p className="text-center mb-8 text-xl italic text-gray-700 dark:text-gray-200">
-                              "{testimonial.testimoni}"
-                            </p>
-                            
-                            <div className="text-center">
-                              <p className="font-semibold text-lg text-gray-900 dark:text-gray-100">{testimonial.name}</p>
-                              <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.company}</p>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </div>
-                  ))}
+        <ParallaxContainer speed={0.03}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-20 pt-16 max-w-6xl mx-auto">
+            {testimonials.map((testimonial) => (
+              <div key={testimonial.linkedinUrl} className="relative">
+                <div className="absolute -top-14 left-1/2 -translate-x-1/2 z-10">
+                  <div className="relative">
+                    <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 opacity-70 blur-sm"></div>
+                    <Avatar className="relative h-28 w-28 border-4 border-white dark:border-gray-900 shadow-md">
+                      <AvatarImage 
+                        src={testimonial.imageUrl} 
+                        alt={testimonial.name} 
+                        className="object-cover h-full w-full"
+                      />
+                      <AvatarFallback className="text-2xl">{testimonial.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                  </div>
                 </div>
+                
+                <Card className="h-full backdrop-blur-sm bg-white/80 dark:bg-gray-900/80 border-0 shadow-lg transform transition-all duration-500 hover:shadow-xl">
+                  <CardContent className="pt-20 px-8 pb-8 relative flex flex-col h-full">
+                    <Quote className="absolute top-6 left-6 h-8 w-8 text-purple-200 dark:text-purple-800 opacity-40" />
+                    
+                    <div className="flex justify-center mb-6 text-yellow-500">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="fill-current h-4 w-4" />
+                      ))}
+                    </div>
+                    
+                    <p className="text-center mb-8 text-lg italic text-gray-700 dark:text-gray-200 flex-1">
+                      "{testimonial.testimoni}"
+                    </p>
+                    
+                    <div className="text-center">
+                      <a
+                        href={testimonial.linkedinUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 font-semibold text-lg text-gray-900 dark:text-gray-100 hover:text-purple-600 transition-colors"
+                      >
+                        {testimonial.name}
+                        <Linkedin className="h-4 w-4 text-[#0A66C2]" />
+                      </a>
+                      <p className="text-sm text-gray-700 dark:text-gray-400">{testimonial.company}</p>
+                      <a
+                        href={testimonial.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-purple-800 hover:text-pink-700 transition-colors"
+                      >
+                        Visit live site
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
-            </div>
-            
-            <div className="flex justify-center mt-8 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    activeIndex === index 
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600' 
-                      : 'bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600'
-                  }`}
-                  aria-label={`View testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
-          </ParallaxContainer>
-        </div>
+            ))}
+          </div>
+        </ParallaxContainer>
       </div>
     </section>
   );

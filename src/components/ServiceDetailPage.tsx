@@ -63,23 +63,23 @@ const serviceContent = {
       'Usability testing and refinement'
     ]
   },
-  'real-estate-website': {
-    title: 'Real Estate Website Development',
-    heading: 'Specialized Solutions for Real Estate Professionals',
-    description: 'Custom websites for real estate agencies, brokers, and property managers with advanced property listing features.',
+  'tech-leads-for-hire': {
+    title: 'Tech Leads for Hire',
+    heading: 'Senior Technical Leadership, On Your Terms',
+    description: 'Embed vetted senior engineers and team leads into your organisation on flexible engagements, without the overhead of a permanent hire.',
     benefits: [
-      'Integrated MLS and property listing capabilities',
-      'Advanced search and filtering options',
-      'Virtual tours and high-quality image galleries',
-      'Lead generation and contact management',
-      'Mobile-responsive designs for on-the-go access'
+      'Hand-picked senior engineers and team leads',
+      'Flexible engagements from a few weeks to long-term',
+      'Onboarded and productive within days, not months',
+      'Seamless integration with your tools and workflows',
+      'Scale your team up or down as priorities change'
     ],
     process: [
-      'Agency needs assessment',
-      'Feature prioritization and planning',
-      'Design and development',
-      'MLS integration and data setup',
-      'Launch and marketing support'
+      'Requirements and skills assessment',
+      'Candidate shortlist and interviews',
+      'Onboarding and team integration',
+      'Delivery with regular check-ins',
+      'Scale, extend, or hand over as needed'
     ]
   },
   'seo': {

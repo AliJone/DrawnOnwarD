@@ -1,6 +1,5 @@
 
-import { useEffect, useState } from 'react';
-import { HelmetProvider } from 'react-helmet-async';
+import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -10,7 +9,6 @@ import Footer from '@/components/Footer';
 import AnimatedCursor from '@/components/AnimatedCursor';
 import Portfolio from '@/components/Portfolio';
 import Testimonials from '@/components/Testimonials';
-import SEO from '@/components/SEO';
 import { ServiceItem, getServiceIcon } from '@/components/ServicesData';
 
 // Portfolio data
@@ -18,8 +16,10 @@ const portfolioData = [
   {
     id: "asd1293uasdads1",
     title: "Premed.pk",
-    imageUrl: "https://firebasestorage.googleapis.com/v0/b/drawnonward-d9cd9.appspot.com/o/Recruiting.png?alt=media&token=a493b218-9f87-4b82-8549-6d36a429c734",
+    imageUrl: "/images/premed.webp",
     type: "Website",
+    url: "https://www.premed.pk/",
+    result: "Used by 100,000+ students",
     responsibility: [
       "Website Development",
       "UI/UX Design"
@@ -29,7 +29,7 @@ const portfolioData = [
   {
     id: "asd1293uvbvcbbd3",
     title: "Nehjul Balagha",
-    imageUrl: "https://firebasestorage.googleapis.com/v0/b/drawnonward-d9cd9.appspot.com/o/Freelance.png?alt=media&token=4f63167f-0efb-4c15-821d-500a81c9c4a6",
+    imageUrl: "/images/nehjul-balagha.webp",
     type: "Mobile Apps",
     description: "Drawn Onward embarked on this heartfelt project to craft the Nahj Al-Balagha app, bringing the profound teachings of Imam Ali (a.s) into the modern digital realm. Leveraging the robust security of Firebase Auth and the seamless efficiency of Firebase Firestore, we've created an app that not only connects you to tradition but also ensures a reliable and user-friendly experience for accessing wisdom on the go.",
     responsibility: [
@@ -40,8 +40,9 @@ const portfolioData = [
   {
     id: "asd1293uhjkhkjh2",
     title: "Asaan Retail",
-    imageUrl: "https://firebasestorage.googleapis.com/v0/b/drawnonward-d9cd9.appspot.com/o/Stream.png?alt=media&token=eb129e91-0f27-430d-afb8-2c8f964ab469",
+    imageUrl: "/images/asaan-retail.webp",
     type: "Website",
+    url: "https://asaanretail.io/",
     description: "Asaan Retail represents the pinnacle of inventory management, fulfillment, and accounting software for multi-channel commerce. It stands as a testament to DrawnOnward's commitment to simplifying complex business processes. This initiative reshapes how businesses manage their inventory, fulfill orders, and maintain financial stability in the ever-evolving world of commerce.",
     responsibility: [
       "Website Development",
@@ -51,7 +52,7 @@ const portfolioData = [
   {
     id: "asd1293uvbvcbbd4",
     title: "Survey Kollect",
-    imageUrl: "https://firebasestorage.googleapis.com/v0/b/drawnonward-d9cd9.appspot.com/o/Kobo.png?alt=media&token=dcc672df-aede-43c7-8fc0-c8c11fbf3694",
+    imageUrl: "/images/survey-kollect.webp",
     type: "Mobile Apps",
     description: "Survey Kollect exemplifies state-of-the-art data collection and analysis, tailored for field researchers, organizations, and academic professionals. It offers robust tools for creating, distributing, and analyzing surveys with unparalleled ease and efficiency. This platform is designed to streamline complex survey processes, enabling users to gather insightful data from various demographics and geographical locations.",
     responsibility: [
@@ -66,14 +67,26 @@ const testimonialData = [
   {
     name: "Saqlain Raza",
     company: "Founder and CEO, Asaan Retail",
+    companyUrl: "https://asaanretail.io/",
+    linkedinUrl: "https://www.linkedin.com/in/saqlain-raza-bhimani/",
     testimoni: "DrawnOnward's expertise elevated Asaan Retail's online presence with a stunning, efficient website that truly understands customer needs.",
-    imageUrl: "https://firebasestorage.googleapis.com/v0/b/drawnonward-d9cd9.appspot.com/o/Saqlain.png?alt=media&token=8bce15eb-aa71-4a86-b9b4-23f9e9a6b8e8"
+    imageUrl: "/images/saqlain.webp"
   },
   {
     name: "Fahd Niaz Shaikh",
-    company: "Founder and CEO, Premed.pk",
+    company: "Co-founder and CEO, PreMed.PK",
+    companyUrl: "https://www.premed.pk/",
+    linkedinUrl: "https://www.linkedin.com/in/fahd-niaz-shaikh/",
     testimoni: "DrawnOnward transformed our vision into reality with exceptional skill, creating a user-friendly and innovative website for Premed.pk.",
-    imageUrl: "https://firebasestorage.googleapis.com/v0/b/drawnonward-d9cd9.appspot.com/o/Fahad.jpeg?alt=media&token=fd6e0eb2-4273-4ee4-932a-cdafb5d10e4e"
+    imageUrl: "/images/fahad.webp"
+  },
+  {
+    name: "Hasnain Mankani",
+    company: "Co-founder, PreMed.PK",
+    companyUrl: "https://www.premed.pk/",
+    linkedinUrl: "https://www.linkedin.com/in/hasnain-mankani/",
+    // TODO: draft wording. Get Hasnain's sign-off and a photo before deploying.
+    testimoni: "DrawnOnward rebuilt PreMed.PK into a platform that now serves over 100,000 students. They understood what medical students actually needed and delivered it without drama."
   }
 ];
 
@@ -83,51 +96,11 @@ const serviceData: ServiceItem[] = [
   { title: "Mobile Development", icon: getServiceIcon("Mobile Development") },
   { title: "UI/UX Design", icon: getServiceIcon("UI/UX Design") },
   { title: "SEO", icon: getServiceIcon("SEO") },
-  { title: "Real Estate Website", icon: getServiceIcon("Real Estate Website") },
+  { title: "Tech Leads for Hire", icon: getServiceIcon("Tech Leads for Hire") },
   { title: "Tech Consulting", icon: getServiceIcon("Tech Consulting") }
 ];
 
-// Structured data for services
-const servicesStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "itemListElement": serviceData.map((service, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "item": {
-      "@type": "Service",
-      "name": service.title,
-      "provider": {
-        "@type": "ProfessionalService",
-        "name": "DrawnOnwarD"
-      }
-    }
-  }))
-};
-
-// Structured data for portfolio
-const portfolioStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "itemListElement": portfolioData.map((project, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "item": {
-      "@type": "CreativeWork",
-      "name": project.title,
-      "description": project.description,
-      "image": project.imageUrl,
-      "creator": {
-        "@type": "ProfessionalService",
-        "name": "DrawnOnwarD"
-      }
-    }
-  }))
-};
-
 const Index = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-
   useEffect(() => {
     // Set up scroll reveal
     const handleScroll = () => {
@@ -143,9 +116,6 @@ const Index = () => {
       });
     };
 
-    // Set initial loaded state
-    setIsLoaded(true);
-
     // Initial check for elements in view
     handleScroll();
     
@@ -156,33 +126,9 @@ const Index = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const combinedStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "DrawnOnwarD - Professional Software Development Agency",
-    "description": "DrawnOnwarD is a leading software development agency specializing in custom web development, mobile apps, real estate websites, and UI/UX design services.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "DrawnOnwarD",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.drawnonward.org/logo.png"
-      }
-    },
-    "mainEntity": {
-      "@type": "ProfessionalService",
-      "name": "DrawnOnwarD",
-      "hasOfferCatalog": servicesStructuredData
-    }
-  };
-
   return (
-    <HelmetProvider>
-      <SEO 
-        structuredData={combinedStructuredData}
-        canonical="https://www.drawnonward.org/"
-      />
-      <div className={`min-h-screen relative transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+    <>
+      <div className="min-h-screen relative animate-in fade-in duration-500">
         <AnimatedCursor />
         <Navbar />
         <Hero />
@@ -193,7 +139,7 @@ const Index = () => {
         <Contact />
         <Footer />
       </div>
-    </HelmetProvider>
+    </>
   );
 };
 

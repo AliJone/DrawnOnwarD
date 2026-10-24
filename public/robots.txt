@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.drawnonward.org/sitemap.xml
+Sitemap: https://drawnonward.org/sitemap.xml

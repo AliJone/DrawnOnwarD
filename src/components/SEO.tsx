@@ -14,11 +14,11 @@ interface SEOProps {
 
 const SEO: React.FC<SEOProps> = ({
   title = 'DrawnOnwarD - Professional Software Development Agency',
-  description = 'DrawnOnwarD is a leading software development agency specializing in custom web development, mobile apps, real estate websites, and UI/UX design services.',
-  canonical = 'https://www.drawnonward.org/',
+  description = 'DrawnOnwarD is a leading software development agency specializing in custom web development, mobile apps, tech leads for hire, and UI/UX design services.',
+  canonical = 'https://drawnonward.org/',
   type = 'website',
-  keywords = 'software development agency, custom web development, real estate website development, mobile app development company, UI/UX design services',
-  image = 'https://www.drawnonward.org/og-image.png',
+  keywords = 'software development agency, custom web development, tech leads for hire, mobile app development company, UI/UX design services',
+  image = 'https://drawnonward.org/og-image.png',
   structuredData,
 }) => {
   const site = 'DrawnOnwarD';

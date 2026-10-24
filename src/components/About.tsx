@@ -45,20 +45,20 @@ const About: React.FC = () => {
               
               <div className="grid grid-cols-2 gap-6">
                 <div className="neo-brutalist bg-white text-agency-dark p-6 rounded-md">
-                  <h3 className="font-grotesk text-3xl font-bold mb-1">10+</h3>
+                  <h3 className="font-grotesk text-3xl font-bold mb-1">5+</h3>
                   <p>Years Experience</p>
                 </div>
                 <div className="neo-brutalist bg-white text-agency-dark p-6 rounded-md">
-                  <h3 className="font-grotesk text-3xl font-bold mb-1">150+</h3>
+                  <h3 className="font-grotesk text-3xl font-bold mb-1">30+</h3>
                   <p>Projects Delivered</p>
                 </div>
                 <div className="neo-brutalist bg-white text-agency-dark p-6 rounded-md">
-                  <h3 className="font-grotesk text-3xl font-bold mb-1">40+</h3>
-                  <p>Team Members</p>
+                  <h3 className="font-grotesk text-3xl font-bold mb-1">10</h3>
+                  <p>Core Team Members</p>
                 </div>
                 <div className="neo-brutalist bg-white text-agency-dark p-6 rounded-md">
-                  <h3 className="font-grotesk text-3xl font-bold mb-1">12</h3>
-                  <p>Design Awards</p>
+                  <h3 className="font-grotesk text-3xl font-bold mb-1">100s</h3>
+                  <p>Satisfied Clients</p>
                 </div>
               </div>
             </div>

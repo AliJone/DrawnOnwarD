@@ -4,95 +4,160 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <title>DrawnOnwarD - Professional Software Development Agency</title>
-    <meta name="description" content="DrawnOnwarD is a leading software development agency specializing in custom web development, mobile apps, real estate websites, and UI/UX design services." />
-    <meta name="keywords" content="software development agency, custom web development, real estate website development, mobile app development company, UI/UX design services" />
+    <meta name="description" content="DrawnOnwarD is a leading software development agency specializing in custom web development, mobile apps, tech leads for hire, and UI/UX design services." />
+    <meta name="keywords" content="software development agency, custom web development, tech leads for hire, mobile app development company, UI/UX design services" />
     <meta name="author" content="DrawnOnwarD" />
-    <link rel="canonical" href="https://www.drawnonward.org/" />
+    <link rel="canonical" href="https://drawnonward.org/" />
 
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="DrawnOnwarD - Professional Software Development Agency" />
-    <meta property="og:description" content="Custom web development, mobile apps, and innovative UI/UX design services that transform businesses. Specialists in real estate website development." />
+    <meta property="og:description" content="Custom web development, mobile apps, and innovative UI/UX design services that transform businesses. Senior tech leads available for hire." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.drawnonward.org/" />
-    <meta property="og:image" content="https://www.drawnonward.org/og-image.png" />
+    <meta property="og:url" content="https://drawnonward.org/" />
+    <meta property="og:image" content="https://drawnonward.org/og-image.png" />
+    <meta property="og:site_name" content="DrawnOnwarD" />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@drawnOnwarD" />
-    <meta name="twitter:image" content="https://www.drawnonward.org/twitter-image.png" />
+    <meta name="twitter:image" content="https://drawnonward.org/og-image.png" />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Load the font CSS without blocking first paint; noscript keeps it for no-JS clients -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Schema.org markup for Google -->
+    <!-- Schema.org: one graph, stable @ids, canonical host only -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "DrawnOnwarD",
-      "url": "https://www.drawnonward.org",
-      "logo": "https://www.drawnonward.org/logo.png",
-      "description": "A professional software development agency specializing in custom web development, mobile apps, and UI/UX design services.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "United States"
-      },
-      "email": "info@drawnonward.org",
-      "sameAs": [
-        "https://www.linkedin.com/company/drawnonward/"
-      ],
-      "priceRange": "$$$",
-      "serviceType": ["Web Development", "Mobile App Development", "UI/UX Design", "Real Estate Website Development"],
-      "areaServed": "Worldwide",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Software Development Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Custom Web Development",
-              "description": "End-to-end custom web development services for businesses of all sizes."
-            }
+      "@graph": [
+        {
+          "@type": ["Organization", "ProfessionalService"],
+          "@id": "https://drawnonward.org/#organization",
+          "name": "DrawnOnwarD",
+          "alternateName": ["Drawn Onward", "DrawnOnward"],
+          "url": "https://drawnonward.org/",
+          "logo": {
+            "@type": "ImageObject",
+            "@id": "https://drawnonward.org/#logo",
+            "url": "https://drawnonward.org/logo.png",
+            "contentUrl": "https://drawnonward.org/logo.png",
+            "width": 512,
+            "height": 512
           },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Mobile App Development",
-              "description": "Native and cross-platform mobile application development for iOS and Android."
-            }
+          "image": "https://drawnonward.org/og-image.png",
+          "description": "DrawnOnwarD is a software development agency specializing in custom web development, mobile apps, tech leads for hire, and UI/UX design services.",
+          "email": "info@drawnonward.org",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "email": "info@drawnonward.org",
+            "availableLanguage": ["English"]
           },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "UI/UX Design Services",
-              "description": "User-centered design services creating intuitive and engaging digital experiences."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Real Estate Website Development",
-              "description": "Specialized web development for real estate agencies, property listings, and real estate platforms."
-            }
+          "sameAs": [
+            "https://www.linkedin.com/company/drawnonward/"
+          ],
+          "areaServed": "Worldwide",
+          "knowsAbout": ["Web development", "Mobile app development", "UI/UX design", "Search engine optimization", "Staff augmentation", "Technology consulting"],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Software Development Services",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@id": "https://drawnonward.org/#service-web-development" } },
+              { "@type": "Offer", "itemOffered": { "@id": "https://drawnonward.org/#service-mobile-development" } },
+              { "@type": "Offer", "itemOffered": { "@id": "https://drawnonward.org/#service-ui-ux-design" } },
+              { "@type": "Offer", "itemOffered": { "@id": "https://drawnonward.org/#service-seo" } },
+              { "@type": "Offer", "itemOffered": { "@id": "https://drawnonward.org/#service-tech-leads-for-hire" } },
+              { "@type": "Offer", "itemOffered": { "@id": "https://drawnonward.org/#service-tech-consulting" } }
+            ]
           }
-        ]
-      }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://drawnonward.org/#website",
+          "url": "https://drawnonward.org/",
+          "name": "DrawnOnwarD",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://drawnonward.org/#organization" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://drawnonward.org/#webpage",
+          "url": "https://drawnonward.org/",
+          "name": "DrawnOnwarD - Professional Software Development Agency",
+          "description": "DrawnOnwarD is a software development agency specializing in custom web development, mobile apps, tech leads for hire, and UI/UX design services.",
+          "inLanguage": "en",
+          "isPartOf": { "@id": "https://drawnonward.org/#website" },
+          "about": { "@id": "https://drawnonward.org/#organization" },
+          "primaryImageOfPage": { "@type": "ImageObject", "url": "https://drawnonward.org/og-image.png" }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://drawnonward.org/#service-web-development",
+          "name": "Web Development",
+          "serviceType": "Web development",
+          "description": "Custom, responsive websites and web applications that deliver exceptional user experiences across all devices.",
+          "provider": { "@id": "https://drawnonward.org/#organization" },
+          "areaServed": "Worldwide"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://drawnonward.org/#service-mobile-development",
+          "name": "Mobile Development",
+          "serviceType": "Mobile app development",
+          "description": "Native and cross-platform mobile apps that engage users and drive business growth on iOS and Android.",
+          "provider": { "@id": "https://drawnonward.org/#organization" },
+          "areaServed": "Worldwide"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://drawnonward.org/#service-ui-ux-design",
+          "name": "UI/UX Design",
+          "serviceType": "UI/UX design",
+          "description": "Beautiful, intuitive interfaces and user experiences that delight customers and increase conversions.",
+          "provider": { "@id": "https://drawnonward.org/#organization" },
+          "areaServed": "Worldwide"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://drawnonward.org/#service-seo",
+          "name": "SEO",
+          "serviceType": "Search engine optimization",
+          "description": "Data-driven search engine optimization strategies that improve your visibility and drive organic traffic.",
+          "provider": { "@id": "https://drawnonward.org/#organization" },
+          "areaServed": "Worldwide"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://drawnonward.org/#service-tech-leads-for-hire",
+          "name": "Tech Leads for Hire",
+          "serviceType": "Staff augmentation",
+          "description": "Vetted senior engineers and team leads embedded in your team on flexible terms, driving delivery from day one.",
+          "provider": { "@id": "https://drawnonward.org/#organization" },
+          "areaServed": "Worldwide"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://drawnonward.org/#service-tech-consulting",
+          "name": "Tech Consulting",
+          "serviceType": "Technology consulting",
+          "description": "Expert guidance on technology strategy, digital transformation, and innovative solutions for business growth.",
+          "provider": { "@id": "https://drawnonward.org/#organization" },
+          "areaServed": "Worldwide"
+        }
+      ]
     }
     </script>
   </head>
 
   <body>
     <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

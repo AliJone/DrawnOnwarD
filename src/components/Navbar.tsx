@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
         </div>
         
         <div className="hidden lg:flex gap-8">
-          {['About', 'Services', 'Projects', 'Contact'].map((item) => (
+          {['About', 'Services', 'Projects', 'Testimonials', 'Contact'].map((item) => (
             <a 
               key={item} 
               href={`#${item.toLowerCase()}`}
@@ -50,15 +50,17 @@ const Navbar: React.FC = () => {
         <div className="hidden lg:block">
           <a 
             href="#contact" 
-            className="neo-brutalist bg-agency-pink text-white font-space px-6 py-3 rounded-lg font-medium"
+            className="neo-brutalist bg-agency-pink text-agency-dark font-space px-6 py-3 rounded-lg font-semibold"
           >
-            Get in touch
+            Get a free roadmap
           </a>
         </div>
         
         <button 
           className="block lg:hidden text-white"
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
@@ -81,7 +83,7 @@ const Navbar: React.FC = () => {
       {menuOpen && (
         <div className="fixed top-[72px] left-0 w-full h-[calc(100vh-72px)] bg-agency-dark lg:hidden">
           <div className="flex flex-col items-center justify-center h-full gap-8">
-            {['About', 'Services', 'Projects', 'Contact'].map((item) => (
+            {['About', 'Services', 'Projects', 'Testimonials', 'Contact'].map((item) => (
               <a 
                 key={item} 
                 href={`#${item.toLowerCase()}`}
@@ -93,10 +95,10 @@ const Navbar: React.FC = () => {
             ))}
             <a 
               href="#contact" 
-              className="neo-brutalist mt-6 bg-agency-pink text-white font-space px-8 py-4 rounded-lg font-medium text-xl"
+              className="neo-brutalist mt-6 bg-agency-pink text-agency-dark font-space px-8 py-4 rounded-lg font-semibold text-xl"
               onClick={() => setMenuOpen(false)}
             >
-              Get in touch
+              Get a free roadmap
             </a>
           </div>
         </div>

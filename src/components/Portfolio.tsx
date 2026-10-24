@@ -14,6 +14,8 @@ interface Project {
   type: string;
   description: string;
   responsibility: string[];
+  url?: string;
+  result?: string;
 }
 
 interface PortfolioProps {
@@ -88,6 +90,10 @@ const Portfolio = ({ projects }: PortfolioProps) => {
                     <img 
                       src={project.imageUrl} 
                       alt={project.title} 
+                      width={1280}
+                      height={1027}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover object-center"
                     />
                   </AspectRatio>
@@ -105,6 +111,10 @@ const Portfolio = ({ projects }: PortfolioProps) => {
                     {project.title}
                   </CardTitle>
                   
+                  {project.result && (
+                    <p className="text-sm font-bold text-agency-neon mb-3">{project.result}</p>
+                  )}
+
                   <p className="text-gray-300 mb-4 line-clamp-3">
                     {project.description}
                   </p>
@@ -120,7 +130,7 @@ const Portfolio = ({ projects }: PortfolioProps) => {
                   </div>
                 </CardContent>
                 
-                <CardFooter className="px-6 py-4 flex justify-start">
+                <CardFooter className="px-6 py-4 flex items-center gap-4">
                   <Button 
                     onClick={() => setSelectedProject(project)}
                     className="neo-brutalist bg-[#8E9196] text-[#1A1F2C] hover:bg-[#8E9196]/90 hover:shadow-[4px_4px_0px_0px_rgba(34,34,34,1)]"
@@ -128,6 +138,17 @@ const Portfolio = ({ projects }: PortfolioProps) => {
                     <span className="font-bold">View Details</span>
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
+                  {project.url && (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center font-bold text-gray-300 hover:text-white transition-colors"
+                    >
+                      Visit live site
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </a>
+                  )}
                 </CardFooter>
               </Card>
             </div>
@@ -166,6 +187,22 @@ const Portfolio = ({ projects }: PortfolioProps) => {
               <DialogDescription className="text-base mb-6 text-gray-300">
                 {selectedProject.description}
               </DialogDescription>
+
+              {selectedProject.result && (
+                <p className="text-sm font-bold text-agency-neon mb-6">{selectedProject.result}</p>
+              )}
+
+              {selectedProject.url && (
+                <a
+                  href={selectedProject.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="neo-brutalist inline-flex items-center bg-violet-600 text-white font-bold px-4 py-2 rounded-md mb-6 hover:bg-violet-700 transition-colors"
+                >
+                  Visit live site
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </a>
+              )}
               
               <div className="mb-6">
                 <h4 className="text-lg font-bold mb-3 text-gray-100">Responsibilities:</h4>

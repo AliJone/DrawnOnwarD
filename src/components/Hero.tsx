@@ -2,6 +2,12 @@
 import React, { useEffect, useRef } from 'react';
 import ParallaxContainer from './ParallaxContainer';
 
+// Faces of real clients for the hero proof strip (same photos as the testimonials)
+const clientFaces = [
+  { name: 'Saqlain Raza', src: '/images/saqlain.webp' },
+  { name: 'Fahd Niaz Shaikh', src: '/images/fahad.webp' },
+];
+
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -60,19 +66,35 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div className="flex flex-col justify-center">
-            <h1 className="reveal-on-scroll text-5xl md:text-7xl lg:text-8xl font-bold mb-6 font-grotesk leading-tight text-white">
-              We <span className="text-agency-purple">craft</span> digital <span className="text-agency-pink">experiences</span>
+            <h1 className="animate-slide-up text-5xl md:text-7xl lg:text-8xl font-bold mb-6 font-grotesk leading-tight text-white">
+              Software that <span className="text-agency-purple">wins</span> you <span className="text-agency-pink">customers</span>
             </h1>
-            <p className="reveal-on-scroll text-lg md:text-xl mb-8 text-gray-300 max-w-lg delay-100">
-              DrawnOnwarD is a software agency specializing in creating immersive digital experiences that push the boundaries of web technology.
+            <p className="animate-slide-up [animation-fill-mode:backwards] [animation-delay:100ms] text-lg md:text-xl mb-8 text-gray-300 max-w-lg">
+              For founders and growing teams who need a web or mobile product built right the first time. We design, build and ship it with senior engineers, and the people you meet are the people who build.
             </p>
-            <div className="reveal-on-scroll flex flex-col sm:flex-row gap-4 delay-200">
-              <a href="#services" className="neo-brutalist bg-agency-purple text-white font-space text-lg px-8 py-4 rounded-lg font-medium">
-                Our Services
+            <div className="animate-slide-up [animation-fill-mode:backwards] [animation-delay:200ms] flex flex-col sm:flex-row gap-4">
+              <a href="#contact" className="neo-brutalist bg-violet-600 text-white font-space text-lg px-8 py-4 rounded-lg font-medium">
+                Get your free project roadmap
               </a>
               <a href="#projects" className="border-2 border-white hover:border-agency-pink text-white font-space text-lg px-8 py-4 rounded-lg font-medium transition-colors">
                 See Our Work
               </a>
+            </div>
+            <p className="animate-slide-up [animation-fill-mode:backwards] [animation-delay:200ms] mt-4 text-sm text-gray-400">
+              30-minute call. No commitment. We reply within one business day.
+            </p>
+            <div className="animate-slide-up [animation-fill-mode:backwards] [animation-delay:300ms] mt-8 flex items-center gap-4">
+              <div className="flex -space-x-3">
+                {clientFaces.map((face) => (
+                  <img key={face.name} src={face.src} alt={face.name} width={40} height={40} className="h-10 w-10 rounded-full border-2 border-agency-dark object-cover" />
+                ))}
+              </div>
+              <p className="text-sm text-gray-400">
+                Trusted by the founders of{' '}
+                <a href="https://www.premed.pk/" target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4 hover:text-agency-purple transition-colors">PreMed.PK</a>
+                {' '}and{' '}
+                <a href="https://asaanretail.io/" target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4 hover:text-agency-purple transition-colors">Asaan Retail</a>
+              </p>
             </div>
           </div>
           
