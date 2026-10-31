@@ -4,35 +4,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light theme first: the deck and banner are light. Values are HSL triplets of the brand palette in tailwind.config.ts */
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 98%;
+    --background: 225 22% 96%;
+    --foreground: 235 52% 12%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 235 52% 12%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 235 52% 12%;
 
-    --primary: 262 83% 76%;
+    --primary: 233 86% 30%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 350 100% 66%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 229 89% 96%;
+    --secondary-foreground: 233 86% 30%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 225 24% 92%;
+    --muted-foreground: 228 16% 35%;
 
-    --accent: 120 100% 54%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 185 65% 93%;
+    --accent-foreground: 233 86% 30%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
-    --ring: 262 83% 76%;
+    --border: 224 27% 89%;
+    --input: 224 27% 89%;
+    --ring: 233 86% 30%;
 
     --radius: 0.5rem;
 
@@ -50,60 +51,90 @@
 @layer base {
   * {
     @apply border-border;
-    cursor: none;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-agency-dark text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    /* off-white page with the deck's barely-there grey gradient */
+    background-image: linear-gradient(180deg, #f8f9fc 0%, #f4f5f8 35%, #eef0f5 100%);
     overflow-x: hidden;
   }
-  
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
+
+  ::selection {
+    @apply bg-brand-teal text-brand-navy;
   }
-  
-  ::-webkit-scrollbar-track {
-    @apply bg-agency-dark;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    @apply bg-agency-purple rounded-full;
-  }
-  
-  /* Smooth scroll */
-  html {
-    scroll-behavior: smooth;
+
+  /* Motion only ever adds movement; nothing is hidden at rest, so switching it off loses nothing */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
 @layer components {
-  .glass-panel {
-    @apply backdrop-blur-md bg-agency-glass border border-white/10 rounded-xl;
+  /* Deck-style display type: condensed, uppercase, letter-spaced, navy */
+  .display-heading {
+    @apply font-display uppercase tracking-[0.06em] leading-none text-brand-navy;
   }
-  
-  .neo-brutalist {
-    @apply border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+
+  /* Teal block behind a word in display type. Anton's content box is 1.51em tall (ascent 1.18, descent 0.33,
+     caps 0.87), so the band is sized and positioned over the capitals instead of filling the whole box,
+     which would overlap the line above. */
+  .hl-block {
+    background-image: linear-gradient(theme('colors.brand.teal'), theme('colors.brand.teal'));
+    background-repeat: no-repeat;
+    background-size: 100% 1.07em;
+    background-position: 0 0.21em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
-  
-  .parallax-layer {
-    @apply absolute w-full h-full;
-    will-change: transform;
+
+  .teal-rule {
+    @apply block h-1.5 w-14 bg-brand-teal;
   }
-  
-  .reveal-on-scroll {
-    @apply opacity-0 translate-y-10 transition-all duration-700;
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-7 py-3.5 text-base font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
   }
-  
-  .revealed {
-    @apply opacity-100 translate-y-0;
+
+  .btn-sm {
+    @apply px-5 py-2.5 text-sm;
   }
-  
-  .highlight-text {
-    @apply relative inline-block;
+
+  .btn-primary {
+    @apply bg-brand-navy text-white hover:bg-brand-periwinkle-deep focus-visible:ring-brand-navy;
   }
-  
-  .highlight-text::after {
-    @apply content-[''] absolute -z-10 left-0 bottom-0 w-full h-[0.4em] bg-agency-pink opacity-70;
+
+  .btn-outline {
+    @apply border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white focus-visible:ring-brand-navy;
+  }
+
+  .btn-teal {
+    @apply bg-brand-teal text-brand-navy hover:bg-white focus-visible:ring-brand-teal focus-visible:ring-offset-brand-navy;
+  }
+
+  .btn-light {
+    @apply border-2 border-white text-white hover:bg-white hover:text-brand-navy focus-visible:ring-white focus-visible:ring-offset-brand-navy;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }

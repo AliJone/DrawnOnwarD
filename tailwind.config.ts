@@ -63,18 +63,27 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				agency: {
-					dark: "#121212",
-					purple: "#8B5CF6",
-					pink: "#FF5470",
-					neon: "#39FF14",
-					glass: "rgba(255, 255, 255, 0.1)"
+				// Brand palette sampled from the logo, banner and portfolio deck.
+				// Contrast rules: text on teal is navy only; periwinkle carries large text only
+				// (use periwinkle-deep behind small white text); teal-ink is the teal for small text on light backgrounds.
+				brand: {
+					navy: "#0B1A8E",
+					"navy-deep": "#071263",
+					teal: "#0ABAC9",
+					"teal-deep": "#0D8EAD",
+					"teal-ink": "#08748A",
+					periwinkle: "#6585F7",
+					"periwinkle-deep": "#4866ED",
+					ink: "#0F1230",
+					muted: "#4B5168",
+					paper: "#F4F5F8",
+					line: "#DCE0EB",
+					"on-navy": "#C7CDF2"
 				}
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
-				space: ['Space Grotesk', 'sans-serif'],
-				grotesk: ['Space Grotesk', 'sans-serif']
+				sans: ['Poppins', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+				display: ['Anton', 'Impact', 'Haettenschweiler', 'Arial Narrow Bold', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -89,49 +98,11 @@ export default {
 				'accordion-up': {
 					from: { height: 'var(--radix-accordion-content-height)' },
 					to: { height: '0' }
-				},
-				'float': {
-					'0%, 100%': { transform: 'translateY(0px)' },
-					'50%': { transform: 'translateY(-20px)' }
-				},
-				'pulse-glow': {
-					'0%, 100%': { 
-						opacity: '1',
-						boxShadow: '0 0 20px rgba(139, 92, 246, 0.7)'
-					},
-					'50%': { 
-						opacity: '0.8',
-						boxShadow: '0 0 40px rgba(139, 92, 246, 0.9)'
-					}
-				},
-				'slide-up': {
-					'0%': { 
-						opacity: '0',
-						transform: 'translateY(40px)'
-					},
-					'100%': {
-						opacity: '1',
-						transform: 'translateY(0)'
-					}
-				},
-				'slide-right': {
-					'0%': { 
-						opacity: '0',
-						transform: 'translateX(-40px)'
-					},
-					'100%': {
-						opacity: '1',
-						transform: 'translateX(0)'
-					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-				'float': 'float 6s ease-in-out infinite',
-				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-				'slide-up': 'slide-up 0.6s ease-out',
-				'slide-right': 'slide-right 0.6s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out'
 			}
 		}
 	},

@@ -1,17 +1,14 @@
-import { useEffect, useState, useRef } from 'react';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ArrowRight, ExternalLink, Code, Smartphone, X } from 'lucide-react';
-import ParallaxContainer from './ParallaxContainer';
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { ArrowRight, ExternalLink, Code, Smartphone } from 'lucide-react';
+import SectionHeading from './SectionHeading';
 
-interface Project {
+export interface Project {
   id: string;
   title: string;
   imageUrl: string;
   type: string;
+  industry?: string;
   description: string;
   responsibility: string[];
   url?: string;
@@ -22,200 +19,158 @@ interface PortfolioProps {
   projects: Project[];
 }
 
+// Each mock-up ships as 1280px plus 640/960px renditions (public/images/*-640.webp, *-960.webp)
+export const imageSrcSet = (url: string) =>
+  `${url.replace(/\.webp$/, '-640.webp')} 640w, ${url.replace(/\.webp$/, '-960.webp')} 960w, ${url} 1280w`;
+
 const Portfolio = ({ projects }: PortfolioProps) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in', 'opacity-100');
-            entry.target.classList.remove('opacity-0');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach((card) => {
-      observer.observe(card);
-    });
-    
-    return () => {
-      projectCards.forEach((card) => {
-        observer.unobserve(card);
-      });
-    };
-  }, [projects]);
 
   const getProjectIcon = (type: string) => {
     switch (type) {
       case 'Website':
-        return <Code className="h-5 w-5" />;
+        return <Code className="h-4 w-4" aria-hidden="true" />;
       case 'Mobile Apps':
-        return <Smartphone className="h-5 w-5" />;
+        return <Smartphone className="h-4 w-4" aria-hidden="true" />;
       default:
-        return <ExternalLink className="h-5 w-5" />;
+        return <ExternalLink className="h-4 w-4" aria-hidden="true" />;
     }
   };
-  
-  return (
-    <section id="projects" className="py-24 bg-agency-dark">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 reveal-on-scroll">
-          <div className="inline-block bg-[#222222] py-3 px-6 -rotate-1 neo-brutalist mb-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-200">
-              Our Work
-            </h2>
-          </div>
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mt-6">
-            Explore our diverse portfolio of successful projects that showcase our expertise and innovation.
-          </p>
-        </div>
-        
-        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
-          {projects.map((project, index) => (
-            <div 
-              key={project.id} 
-              className={`project-card opacity-0 transform transition-all duration-700 ${
-                index % 2 === 0 ? 'rotate-1' : '-rotate-1'
-              }`}
-            >
-              <Card className="neo-brutalist bg-[#1A1F2C] text-gray-200 overflow-hidden hover:shadow-[8px_8px_0px_0px_rgba(86,63,131,0.8)] transition-all duration-300">
-                <CardHeader className="p-0 overflow-hidden">
-                  <AspectRatio ratio={16/9} className="bg-gray-800">
-                    <img 
-                      src={project.imageUrl} 
-                      alt={project.title} 
-                      width={1280}
-                      height={1027}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover object-center"
-                    />
-                  </AspectRatio>
-                  
-                  <div className="absolute top-4 right-4">
-                    <Badge className="neo-brutalist bg-[#403E43] text-gray-200 font-bold px-3 py-1 flex gap-1 items-center border-[2px] border-[#555555]">
-                      {getProjectIcon(project.type)}
-                      {project.type}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                
-                <CardContent className="pt-6 pb-0 px-6">
-                  <CardTitle className="text-2xl font-black mb-3 text-gray-100">
-                    {project.title}
-                  </CardTitle>
-                  
-                  {project.result && (
-                    <p className="text-sm font-bold text-agency-neon mb-3">{project.result}</p>
-                  )}
 
-                  <p className="text-gray-300 mb-4 line-clamp-3">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {project.responsibility.map((resp, idx) => (
-                      <Badge key={idx} 
-                        className="neo-brutalist bg-[#333333] text-gray-200 border-[1px] border-[#555555] font-medium"
-                      >
-                        {resp}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-                
-                <CardFooter className="px-6 py-4 flex items-center gap-4">
-                  <Button 
+  return (
+    <section id="projects" className="scroll-mt-20 py-20 md:py-28">
+      <div className="container mx-auto px-4 md:px-8">
+        <SectionHeading
+          align="center"
+          title="Our work"
+          subtitle="Four products we designed and built, with the founders' names on them. Every live site is linked so you can try the product yourself."
+        />
+
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          {projects.map((project) => (
+            // Anchor target for the hero carousel's Explore links; :target adds a teal ring
+            <article
+              key={project.id}
+              id={`project-${project.id}`}
+              className="flex scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-brand-line bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg target:ring-4 target:ring-brand-teal"
+            >
+              <div className="relative flex aspect-[16/10] items-center bg-gradient-to-br from-brand-paper to-[#e6e9f2] p-6">
+                <img
+                  src={project.imageUrl}
+                  alt={`${project.title} shown on device mock-ups`}
+                  width={1280}
+                  height={1027}
+                  loading="lazy"
+                  decoding="async"
+                  srcSet={imageSrcSet(project.imageUrl)}
+                  sizes="(min-width: 1400px) 600px, (min-width: 768px) 45vw, 90vw"
+                  className="h-full w-full object-contain"
+                />
+                <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-brand-navy px-3 py-1 text-xs font-semibold text-white">
+                  {getProjectIcon(project.type)}
+                  {project.type}
+                </span>
+              </div>
+
+              <div className="flex flex-1 flex-col p-6 md:p-8">
+                {project.industry && (
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-teal-ink">{project.industry}</p>
+                )}
+                <h3 className="mt-2 text-2xl font-semibold text-brand-navy">{project.title}</h3>
+                {project.result && (
+                  <p className="mt-2 font-semibold text-brand-teal-ink">{project.result}</p>
+                )}
+                <p className="mt-3 line-clamp-3 leading-relaxed text-brand-ink/80">
+                  {project.description}
+                </p>
+                <ul className="mt-4 flex flex-wrap gap-2" aria-label="Our responsibilities">
+                  {project.responsibility.map((resp) => (
+                    <li key={resp} className="rounded-full border border-brand-line bg-brand-paper px-3 py-1 text-xs font-medium text-brand-navy">
+                      {resp}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+                  <button
+                    type="button"
                     onClick={() => setSelectedProject(project)}
-                    className="neo-brutalist bg-[#8E9196] text-[#1A1F2C] hover:bg-[#8E9196]/90 hover:shadow-[4px_4px_0px_0px_rgba(34,34,34,1)]"
+                    className="btn btn-outline btn-sm"
                   >
-                    <span className="font-bold">View Details</span>
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
+                    View details
+                    <span className="sr-only">about {project.title}</span>
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </button>
                   {project.url && (
                     <a
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center font-bold text-gray-300 hover:text-white transition-colors"
+                      className="inline-flex items-center gap-1.5 font-semibold text-brand-navy underline decoration-brand-teal decoration-2 underline-offset-4 transition-colors hover:text-brand-teal-ink"
                     >
                       Visit live site
-                      <ExternalLink className="w-4 h-4 ml-2" />
+                      <span className="sr-only">: {project.title}</span>
+                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
                     </a>
                   )}
-                </CardFooter>
-              </Card>
-            </div>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </div>
 
       <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
         {selectedProject && (
-          <DialogContent className="sm:max-w-[725px] p-0 overflow-hidden neo-brutalist bg-[#1A1F2C] text-gray-200 border-[4px] border-[#333333]">
-            <div className="relative">
-              <img 
-                src={selectedProject.imageUrl} 
-                alt={selectedProject.title}
-                className="w-full h-64 object-cover border-b-[4px] border-[#333333]"
+          <DialogContent className="max-h-[90vh] overflow-y-auto bg-white p-0 text-brand-ink sm:max-w-[725px] sm:rounded-2xl">
+            <div className="bg-gradient-to-br from-brand-paper to-[#e6e9f2] p-8">
+              <img
+                src={selectedProject.imageUrl}
+                alt={`${selectedProject.title} shown on device mock-ups`}
+                width={1280}
+                height={1027}
+                className="mx-auto max-h-64 w-auto object-contain"
               />
-              <Button 
-                className="absolute top-4 right-4 h-8 w-8 p-0 neo-brutalist bg-[#333333] text-gray-200 hover:bg-[#555555] hover:text-white"
-                onClick={() => setSelectedProject(null)}
-              >
-                <X className="h-4 w-4" />
-              </Button>
             </div>
 
-            <DialogHeader className="px-6 pt-6">
-              <div className="flex items-start justify-between">
-                <DialogTitle className="text-3xl font-black text-gray-100">{selectedProject.title}</DialogTitle>
-                <Badge className="neo-brutalist bg-[#403E43] text-gray-200 flex gap-1 items-center px-3 py-1 font-bold border-[2px] border-[#555555]">
+            <DialogHeader className="px-6 pt-6 md:px-8">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <DialogTitle className="text-3xl font-semibold text-brand-navy">{selectedProject.title}</DialogTitle>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-navy px-3 py-1 text-xs font-semibold text-white">
                   {getProjectIcon(selectedProject.type)}
                   {selectedProject.type}
-                </Badge>
+                </span>
               </div>
             </DialogHeader>
 
-            <div className="px-6 pb-6">
-              <DialogDescription className="text-base mb-6 text-gray-300">
+            <div className="px-6 pb-8 md:px-8">
+              {selectedProject.result && (
+                <p className="mb-4 font-semibold text-brand-teal-ink">{selectedProject.result}</p>
+              )}
+
+              <DialogDescription className="mb-6 text-base leading-relaxed text-brand-ink/80">
                 {selectedProject.description}
               </DialogDescription>
-
-              {selectedProject.result && (
-                <p className="text-sm font-bold text-agency-neon mb-6">{selectedProject.result}</p>
-              )}
 
               {selectedProject.url && (
                 <a
                   href={selectedProject.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="neo-brutalist inline-flex items-center bg-violet-600 text-white font-bold px-4 py-2 rounded-md mb-6 hover:bg-violet-700 transition-colors"
+                  className="btn btn-primary btn-sm mb-6"
                 >
                   Visit live site
-                  <ExternalLink className="w-4 h-4 ml-2" />
+                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 </a>
               )}
-              
-              <div className="mb-6">
-                <h4 className="text-lg font-bold mb-3 text-gray-100">Responsibilities:</h4>
-                <div className="flex flex-wrap gap-2">
-                  {selectedProject.responsibility.map((resp, idx) => (
-                    <Badge key={idx} 
-                      className="neo-brutalist bg-[#333333] text-gray-200 border-[1px] border-[#555555] font-medium"
-                    >
-                      {resp}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
+
+              <h4 className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-brand-teal-ink">Our responsibilities</h4>
+              <ul className="flex flex-wrap gap-2">
+                {selectedProject.responsibility.map((resp) => (
+                  <li key={resp} className="rounded-full border border-brand-line bg-brand-paper px-3 py-1 text-xs font-medium text-brand-navy">
+                    {resp}
+                  </li>
+                ))}
+              </ul>
             </div>
           </DialogContent>
         )}

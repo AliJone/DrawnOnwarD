@@ -1,23 +1,26 @@
 
-import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
+import StatsBand, { Stat } from '@/components/StatsBand';
 import Services from '@/components/Services';
+import WhyUs, { Reason } from '@/components/WhyUs';
+import IdeaBand from '@/components/IdeaBand';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import AnimatedCursor from '@/components/AnimatedCursor';
-import Portfolio from '@/components/Portfolio';
+import Portfolio, { Project } from '@/components/Portfolio';
 import Testimonials from '@/components/Testimonials';
+import { ProofItem } from '@/components/ProofRow';
 import { ServiceItem, getServiceIcon } from '@/components/ServicesData';
 
 // Portfolio data
-const portfolioData = [
+const portfolioData: Project[] = [
   {
     id: "asd1293uasdads1",
-    title: "Premed.pk",
+    title: "PreMed.PK",
     imageUrl: "/images/premed.webp",
     type: "Website",
+    industry: "EdTech",
     url: "https://www.premed.pk/",
     result: "Used by 100,000+ students",
     responsibility: [
@@ -28,9 +31,10 @@ const portfolioData = [
   },
   {
     id: "asd1293uvbvcbbd3",
-    title: "Nehjul Balagha",
+    title: "Nahj al-Balagha",
     imageUrl: "/images/nehjul-balagha.webp",
     type: "Mobile Apps",
+    industry: "Mobile · Education",
     description: "Drawn Onward embarked on this heartfelt project to craft the Nahj Al-Balagha app, bringing the profound teachings of Imam Ali (a.s) into the modern digital realm. Leveraging the robust security of Firebase Auth and the seamless efficiency of Firebase Firestore, we've created an app that not only connects you to tradition but also ensures a reliable and user-friendly experience for accessing wisdom on the go.",
     responsibility: [
       "Mobile Development",
@@ -42,6 +46,7 @@ const portfolioData = [
     title: "Asaan Retail",
     imageUrl: "/images/asaan-retail.webp",
     type: "Website",
+    industry: "Retail SaaS",
     url: "https://asaanretail.io/",
     description: "Asaan Retail represents the pinnacle of inventory management, fulfillment, and accounting software for multi-channel commerce. It stands as a testament to DrawnOnward's commitment to simplifying complex business processes. This initiative reshapes how businesses manage their inventory, fulfill orders, and maintain financial stability in the ever-evolving world of commerce.",
     responsibility: [
@@ -54,6 +59,7 @@ const portfolioData = [
     title: "Survey Kollect",
     imageUrl: "/images/survey-kollect.webp",
     type: "Mobile Apps",
+    industry: "Mobile · Field research",
     description: "Survey Kollect exemplifies state-of-the-art data collection and analysis, tailored for field researchers, organizations, and academic professionals. It offers robust tools for creating, distributing, and analyzing surveys with unparalleled ease and efficiency. This platform is designed to streamline complex survey processes, enabling users to gather insightful data from various demographics and geographical locations.",
     responsibility: [
       "Mobile Development",
@@ -100,46 +106,78 @@ const serviceData: ServiceItem[] = [
   { title: "Tech Consulting", icon: getServiceIcon("Tech Consulting") }
 ];
 
+// Trust row under the hero CTAs: verifiable proof only (no ratings until we have them)
+const proofItems: ProofItem[] = [
+  { label: "100,000+ students use a platform we built", href: "#project-asd1293uasdads1" },
+  { label: "3 founders on the record", href: "#testimonials" },
+  { label: "Replies within one business day" },
+];
+
+// Owner-approved figures; do not change the numbers
+const stats: Stat[] = [
+  { value: "5+", label: "Years Experience" },
+  { value: "30+", label: "Projects Delivered" },
+  { value: "10", label: "Core Team Members" },
+  { value: "100s", label: "Satisfied Clients" },
+];
+
+// Each reason restates a promise the site already makes, in the founder's words
+const reasons: Reason[] = [
+  {
+    problem: "I pitched to one team and got handed to another.",
+    title: "The people you meet are the people who build",
+    answer: "The engineers on your first call are the engineers who write your code. No hand-offs, no account manager in between.",
+  },
+  {
+    problem: "A junior learned on my budget, then we paid again for the rewrite.",
+    title: "Senior engineers only",
+    answer: "Every engineer at DrawnOnwarD is senior. We are a team of ten and there is no bench of trainees to hand your product to.",
+  },
+  {
+    problem: "The estimate grew every sprint.",
+    title: "Fixed price, locked before code",
+    answer: "Your free roadmap turns into a fixed scope and a fixed quote. The price is agreed before a line of code is written.",
+  },
+  {
+    problem: "Silence for a month, then a surprise.",
+    title: "Weekly demos",
+    answer: "You see working software every week in a live demo, so course corrections happen early, while they are still cheap.",
+  },
+  {
+    problem: "At the end I found out the agency owned the repo.",
+    title: "You own 100% of the code and IP from day one",
+    answer: "Code, designs and intellectual property belong to you from the first commit, not after the final invoice.",
+  },
+  {
+    problem: "I waited a week to hear back about my own project.",
+    title: "A reply within one business day",
+    answer: "Every message gets an answer within one business day, starting with the first one you send us.",
+  },
+];
+
+const ideaExamples = [
+  "A B2B SaaS idea",
+  "A Lovable or Bolt prototype that needs to go to production",
+  "A team that needs a senior tech lead",
+];
+
 const Index = () => {
-  useEffect(() => {
-    // Set up scroll reveal
-    const handleScroll = () => {
-      const reveals = document.querySelectorAll('.reveal-on-scroll');
-      reveals.forEach((element) => {
-        const windowHeight = window.innerHeight;
-        const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 150;
-
-        if (elementTop < windowHeight - elementVisible) {
-          element.classList.add('revealed');
-        }
-      });
-    };
-
-    // Initial check for elements in view
-    handleScroll();
-    
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScroll);
-
-    // Clean up
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <>
-      <div className="min-h-screen relative animate-in fade-in duration-500">
-        <AnimatedCursor />
-        <Navbar />
-        <Hero />
+    <div className="min-h-screen">
+      <Navbar />
+      <main>
+        <Hero projects={portfolioData} proof={proofItems} />
         <About />
+        <StatsBand stats={stats} />
         <Services services={serviceData} />
+        <WhyUs reasons={reasons} />
+        <IdeaBand examples={ideaExamples} />
         <Portfolio projects={portfolioData} />
         <Testimonials testimonials={testimonialData} />
         <Contact />
-        <Footer />
-      </div>
-    </>
+      </main>
+      <Footer />
+    </div>
   );
 };
 
