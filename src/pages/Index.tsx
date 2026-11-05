@@ -6,6 +6,7 @@ import StatsBand, { Stat } from '@/components/StatsBand';
 import Services from '@/components/Services';
 import WhyUs, { Reason } from '@/components/WhyUs';
 import IdeaBand from '@/components/IdeaBand';
+import Pricing, { PriceBand } from '@/components/Pricing';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Portfolio, { Project } from '@/components/Portfolio';
@@ -113,12 +114,34 @@ const proofItems: ProofItem[] = [
   { label: "Replies within one business day" },
 ];
 
-// Owner-approved figures; do not change the numbers
+// Owner-supplied figures (fact sheet, 5 Nov 2026)
 const stats: Stat[] = [
-  { value: "5+", label: "Years Experience" },
-  { value: "30+", label: "Projects Delivered" },
-  { value: "10", label: "Core Team Members" },
-  { value: "100s", label: "Satisfied Clients" },
+  { value: "2024", label: "Founded" },
+  { value: "8 yrs", label: "Average engineer experience" },
+  { value: "10", label: "Core team members" },
+  { value: "15", label: "Projects delivered" },
+];
+
+// Published bands; the fixed quote comes after the free roadmap
+const priceBands: PriceBand[] = [
+  {
+    range: "$5k–15k",
+    name: "Scoped build",
+    fit: "One core workflow, a prototype that must go to production, or a focused web or mobile app.",
+    includes: "Scoping roadmap, design, build, QA and deployment. Typically 4 to 6 weeks.",
+  },
+  {
+    range: "$15k–40k",
+    name: "B2B SaaS MVP",
+    fit: "The first sellable version of a SaaS product.",
+    includes: "Authentication, roles, billing, multi-tenant data, one integration and an admin view. Typically 8 to 12 weeks.",
+  },
+  {
+    range: "$40k–80k",
+    name: "Data or API platform",
+    fit: "Products where the engine is the product.",
+    includes: "Public API with auth and rate limits, data pipelines, dashboards and the SaaS layer around them. Typically 12 to 16 weeks.",
+  },
 ];
 
 // Each reason restates a promise the site already makes, in the founder's words
@@ -171,6 +194,7 @@ const Index = () => {
         <StatsBand stats={stats} />
         <Services services={serviceData} />
         <WhyUs reasons={reasons} />
+        <Pricing bands={priceBands} />
         <IdeaBand examples={ideaExamples} />
         <Portfolio projects={portfolioData} />
         <Testimonials testimonials={testimonialData} />

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
-const navItems = ['About', 'Services', 'Projects', 'Testimonials', 'Contact'];
+const navItems = ['About', 'Services', 'Pricing', 'Projects', 'Testimonials', 'Contact'];
 
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);

@@ -8,15 +8,15 @@ import WaveDecoration from './WaveDecoration';
 const facts = [
   {
     icon: Puzzle,
-    text: 'DrawnOnwarD is a ten-person software agency. Our engineers work from Pakistan and our clients are founders and growing teams around the world.',
+    text: 'DrawnOnwarD is a ten-person software agency founded in 2024. We are based in Pakistan with engineers in Maryland (USA), Germany and Estonia, and our engineers average 8 years of experience.',
   },
   {
     icon: Handshake,
-    text: 'We design, build and ship web and mobile products with senior engineers only, and we place senior tech leads inside teams that need to move faster.',
+    text: 'We build web products in Next.js, Nuxt, React and Vue on Node.js, Go or .NET, and mobile apps in React Native or Flutter. We also place senior tech leads inside teams that need to move faster.',
   },
   {
     icon: ShieldCheck,
-    text: 'Every project starts with a free roadmap and a fixed quote, runs on weekly demos, and ends with you owning 100% of the code and IP.',
+    text: 'Every project starts with a free roadmap and a fixed quote, runs on weekly demos and milestone payments, and you own 100% of the code and IP from the first commit. NDA on request. We never ask for equity.',
   },
 ];
 
@@ -26,6 +26,18 @@ const About: React.FC = () => (
       <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
         <div>
           <SectionHeading title="About us" />
+          <p className="-mt-6 mb-8 max-w-2xl text-lg leading-relaxed text-brand-muted">
+            Founded by{' '}
+            <a
+              href="https://www.linkedin.com/in/ali-jone-merchant/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-brand-navy underline underline-offset-4"
+            >
+              Ali Jone Merchant
+            </a>
+            . Live with clients from 7 pm to midnight Pakistan time: US Eastern mornings and European afternoons.
+          </p>
           <ul className="space-y-5">
             {facts.map(({ icon: Icon, text }) => (
               <li key={text} className="flex gap-5 bg-brand-teal p-6 text-brand-navy shadow-md">

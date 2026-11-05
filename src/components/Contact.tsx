@@ -11,8 +11,10 @@ const CONTACT_EMAIL = 'info@drawnonward.org';
 // The three most common objections, most common first
 const promises = [
   'Fixed scope and quote before any work starts',
-  'Weekly demos, so you see progress every week',
+  'Weekly demos and milestone payments, so you see progress before you pay',
   'Senior engineers only. The people you meet are the people who build',
+  'Live overlap 7 pm to midnight Pakistan time: US Eastern mornings, European afternoons',
+  'You own the code and IP from day one. NDA on request. No equity asked',
 ];
 
 const inputClass =

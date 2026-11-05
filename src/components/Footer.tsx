@@ -8,6 +8,7 @@ const services = ['Web Development', 'Mobile Development', 'UI/UX Design', 'SEO'
 const companyLinks = [
   { label: 'About', href: '#about' },
   { label: 'Why DrawnOnwarD', href: '#why' },
+  { label: 'Pricing', href: '#pricing' },
   { label: 'Projects', href: '#projects' },
   { label: 'Testimonials', href: '#testimonials' },
   { label: 'Contact', href: '#contact' },

@@ -31,7 +31,7 @@ export const getServiceDescription = (title: string): string => {
     "Mobile Development": "Native and cross-platform mobile apps that engage users and drive business growth on iOS and Android.",
     "UI/UX Design": "Beautiful, intuitive interfaces and user experiences that delight customers and increase conversions.",
     "SEO": "Data-driven search engine optimization strategies that improve your visibility and drive organic traffic.",
-    "Tech Leads for Hire": "Senior developers and tech leads embedded in your team on flexible terms: staff augmentation that lifts delivery from day one.",
+    "Tech Leads for Hire": "Senior developers and tech leads embedded in your team on flexible terms: staff augmentation that lifts delivery from day one. Priced per engagement.",
     "Tech Consulting": "Expert guidance on technology strategy, digital transformation, and innovative solutions for business growth."
   };
 

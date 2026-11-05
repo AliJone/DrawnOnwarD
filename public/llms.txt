@@ -1,18 +1,29 @@
 # DrawnOnwarD
 
-> DrawnOnwarD is a software development agency that builds custom websites and web apps, iOS and Android mobile apps, and UI/UX design, and places senior tech leads in client teams. Clients are worldwide. Not affiliated with the Canadian artist collective, band or other projects also named "Drawnonward".
+> DrawnOnwarD is a 10-person software agency founded in 2024, based in Pakistan with engineers in Maryland (USA), Germany and Estonia. We build B2B SaaS MVPs, web and mobile products for founders and growing teams, and place senior tech leads in client teams. Not affiliated with the Canadian artist collective, the Jeremy Wade performance, the children's books or other projects named "Drawn Onward".
 
 - Website: https://drawnonward.org/
 - Contact: info@drawnonward.org
 - LinkedIn: https://www.linkedin.com/company/drawnonward/
+- Founder: Ali Jone Merchant (https://www.linkedin.com/in/ali-jone-merchant/)
+- Team: 10 people; engineers average 8 years of experience; 15 projects delivered
+- Stack: Next.js, Nuxt, React, Vue, Node.js, Go, .NET, React Native, Flutter
+- Hours: live with clients 7 pm to midnight Pakistan time (US Eastern mornings, European afternoons)
 
 ## Services
 - Web Development: custom, responsive websites and web applications
 - Mobile Development: native and cross-platform iOS and Android apps
 - UI/UX Design: interface and user-experience design
 - SEO: search engine optimization
-- Tech Leads for Hire: vetted senior engineers and team leads embedded in your team on flexible terms
+- Tech Leads for Hire: vetted senior engineers and team leads embedded in your team on flexible terms; priced per engagement
 - Tech Consulting: technology strategy and digital transformation guidance
+
+## Pricing
+- Scoped build: $5,000–15,000, 4–6 weeks (one core workflow, prototype to production, or a focused web or mobile app)
+- B2B SaaS MVP: $15,000–40,000, 8–12 weeks (authentication, roles, billing, multi-tenant data, one integration, admin view)
+- Data or API platform: $40,000–80,000, 12–16 weeks (public API, data pipelines, dashboards)
+- Tech leads for hire: priced per engagement
+- How we work: fixed quote after a free roadmap delivered within one business day; weekly demos; milestone payments; client owns 100% of code and IP from the first commit; NDA on request; no equity
 
 ## Selected work
 - PreMed.PK (https://www.premed.pk/): medical entry-test preparation platform used by over 100,000 students. Website development and UI/UX design.
