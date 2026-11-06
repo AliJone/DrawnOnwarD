@@ -133,7 +133,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service}>
-                  <a href={`/services/${serviceSlugs[service]}`} className={footerLink}>
+                  <a href={`/services/${serviceSlugs[service]}/`} className={footerLink}>
                     {service}
                   </a>
                 </li>

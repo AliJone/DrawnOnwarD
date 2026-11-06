@@ -199,7 +199,7 @@ const ServiceDetailPage: React.FC = () => {
         <ul className="mt-4 grid gap-3 sm:grid-cols-2">
           {others.map(([slug, other]) => (
             <li key={slug}>
-              <a href={`/services/${slug}`} className="flex items-center justify-between rounded-xl border border-brand-line bg-white px-5 py-4 font-medium text-brand-navy hover:border-brand-navy">
+              <a href={`/services/${slug}/`} className="flex items-center justify-between rounded-xl border border-brand-line bg-white px-5 py-4 font-medium text-brand-navy hover:border-brand-navy">
                 {other.title} <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </li>

@@ -20,11 +20,12 @@ interface ServiceSeoInput {
   lastmod: string;
 }
 
-// One Service node per page, tied to the organization and website defined on the homepage
+// One Service node per page, tied to the organization and website defined on the homepage.
+// Trailing slashes match what GitHub Pages serves, so canonical and sitemap URLs never redirect.
 const servicePage = (s: ServiceSeoInput): PageSeo => {
-  const url = `${SITE}/services/${s.slug}`;
+  const url = `${SITE}/services/${s.slug}/`;
   return {
-    path: `/services/${s.slug}`,
+    path: `/services/${s.slug}/`,
     title: s.title,
     description: s.description,
     keywords: s.keywords,
