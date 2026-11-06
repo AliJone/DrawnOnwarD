@@ -3,18 +3,14 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CtaBand from '@/components/CtaBand';
 
-// Facts from the owner's fact sheet (5 Nov 2026); keep in step with the homepage, schema and llms.txt
+// Facts from the owner's fact sheet (5 Nov 2026), by role rather than by name so the page stays true as the team changes
 const team = [
-  { name: 'Irteza', role: 'Full-stack engineer', experience: '8 years', stack: 'Node.js, Next.js, Nuxt, React, .NET' },
-  { name: 'Ali Haider', role: 'Mobile and full-stack engineer', experience: '8 years', stack: 'React Native, Flutter, Node.js, Next.js, React, Vue' },
-  { name: 'Ali Jone Merchant', role: 'Founder, full-stack engineer', experience: '7 years', stack: 'Go, React, Node.js, Next.js, Nuxt, Vue' },
-  { name: 'Hamza Khan', role: 'Full-stack engineer', experience: '4 years engineering, 3 years QA', stack: 'React, Node.js, Next.js, Nuxt' },
-  { name: 'Muhammad Hur', role: 'DevOps engineer', experience: '9 years', stack: 'Cloud infrastructure, CI/CD' },
-  { name: 'Umar Khalid', role: 'UI/UX designer', experience: '5+ years', stack: 'Product and interface design' },
-  { name: 'Laiba Khan', role: 'UI/UX designer', experience: '5+ years', stack: 'Product and interface design' },
-  { name: 'Atta Ali', role: 'QA engineer', experience: '5 years manual, 3 years automation', stack: 'Test automation' },
-  { name: 'Muhammad Hassan Jawaid', role: 'QA automation engineer', experience: '5 years automation, 2 years manual', stack: 'Test automation' },
-  { name: 'Zain Raza', role: 'Project manager', experience: '10 years, multiple certifications', stack: 'Delivery management' },
+  { role: 'Full-stack engineers', people: 3, experience: '4 to 8 years', stack: 'Node.js, Next.js, Nuxt, React, Vue, .NET, Go' },
+  { role: 'Mobile and full-stack engineer', people: 1, experience: '8 years', stack: 'React Native, Flutter, Node.js, Next.js, React, Vue' },
+  { role: 'DevOps engineer', people: 1, experience: '9 years', stack: 'Cloud infrastructure, CI/CD' },
+  { role: 'UI/UX designers', people: 2, experience: '5+ years', stack: 'Product and interface design' },
+  { role: 'QA engineers', people: 2, experience: '5+ years, manual and automation', stack: 'Test automation' },
+  { role: 'Project manager', people: 1, experience: '10 years, multiple certifications', stack: 'Delivery management' },
 ];
 
 const howWeWork = [
@@ -58,19 +54,19 @@ const AboutPage: React.FC = () => (
         <table className="w-full text-left text-sm">
           <thead className="bg-brand-paper text-xs uppercase tracking-[0.12em] text-brand-muted">
             <tr>
-              <th scope="col" className="px-4 py-3 font-semibold">Name</th>
               <th scope="col" className="px-4 py-3 font-semibold">Role</th>
+              <th scope="col" className="px-4 py-3 font-semibold">People</th>
               <th scope="col" className="px-4 py-3 font-semibold">Experience</th>
               <th scope="col" className="px-4 py-3 font-semibold">Stack</th>
             </tr>
           </thead>
           <tbody>
-            {team.map((member) => (
-              <tr key={member.name} className="border-t border-brand-line text-brand-ink">
-                <td className="px-4 py-3 font-medium text-brand-navy">{member.name}</td>
-                <td className="px-4 py-3">{member.role}</td>
-                <td className="px-4 py-3">{member.experience}</td>
-                <td className="px-4 py-3">{member.stack}</td>
+            {team.map((group) => (
+              <tr key={group.role} className="border-t border-brand-line text-brand-ink">
+                <td className="px-4 py-3 font-medium text-brand-navy">{group.role}</td>
+                <td className="px-4 py-3">{group.people}</td>
+                <td className="px-4 py-3">{group.experience}</td>
+                <td className="px-4 py-3">{group.stack}</td>
               </tr>
             ))}
           </tbody>
