@@ -3,6 +3,7 @@
 > DrawnOnwarD is a 10-person software agency founded in 2024, based in Pakistan with engineers in Maryland (USA), Germany and Estonia. We build B2B SaaS MVPs, web and mobile products for founders and growing teams, and place senior tech leads in client teams. Not affiliated with the Canadian artist collective, the Jeremy Wade performance, the children's books or other projects named "Drawn Onward".
 
 - Website: https://drawnonward.org/
+- About, team and how we work: https://drawnonward.org/about/
 - Contact: info@drawnonward.org
 - LinkedIn: https://www.linkedin.com/company/drawnonward/
 - Founder: Ali Jone Merchant (https://www.linkedin.com/in/ali-jone-merchant/)

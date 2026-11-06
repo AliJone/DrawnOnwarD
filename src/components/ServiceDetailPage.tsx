@@ -5,6 +5,7 @@ import { seoTemplates } from '@/lib/seoTemplates';
 import { getServiceIcon } from '@/components/ServicesData';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import CtaBand from '@/components/CtaBand';
 import NotFound from '@/pages/NotFound';
 
 // Service content mapping (copy unchanged; rewritten per the content plan later)
@@ -182,18 +183,7 @@ const ServiceDetailPage: React.FC = () => {
           ))}
         </ol>
 
-        <div className="mt-14 rounded-2xl bg-brand-navy p-8 text-center text-white md:p-10">
-          <h3 className="display-heading text-3xl text-white md:text-4xl">Ready to discuss your project?</h3>
-          <p className="mx-auto mt-4 max-w-xl text-brand-on-navy">
-            Tell us what you are building. You get a free project roadmap, with scope, timeline and a budget range, within one business day.
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <a href="/#contact" className="btn btn-teal">
-              Get your free project roadmap <ArrowRight className="h-5 w-5" aria-hidden="true" />
-            </a>
-            <a href="/#pricing" className="btn btn-light">See what an MVP costs</a>
-          </div>
-        </div>
+        <CtaBand />
 
         <h3 className="mt-14 text-sm font-semibold uppercase tracking-[0.18em] text-brand-teal-ink">Other services</h3>
         <ul className="mt-4 grid gap-3 sm:grid-cols-2">

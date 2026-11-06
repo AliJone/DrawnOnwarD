@@ -45,7 +45,7 @@ const urls = prerenderRoutes.map((r) => `  <url>
     <loc>https://drawnonward.org${r.path === '/' ? '/' : r.path}</loc>
     <lastmod>${r.lastmod}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>${r.path === '/' ? '1.0' : '0.8'}</priority>
+    <priority>${r.priority ?? (r.path === '/' ? '1.0' : '0.8')}</priority>
   </url>`);
 await writeFile(path.join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`);
 console.log(`sitemap: ${prerenderRoutes.length} URLs`);
