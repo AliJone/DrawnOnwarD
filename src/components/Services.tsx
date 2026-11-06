@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { ServiceItem, getServiceDescription, getServiceIcon, getServiceProblem } from './ServicesData';
+import { ArrowRight } from 'lucide-react';
+import { ServiceItem, getServiceDescription, getServiceIcon, getServiceProblem, serviceSlugs } from './ServicesData';
 import SectionHeading from './SectionHeading';
 
 interface ServicesProps {
@@ -28,6 +29,9 @@ const Services: React.FC<ServicesProps> = ({ services }) => (
             <p className="mt-6 text-sm italic leading-relaxed text-brand-muted">&ldquo;{getServiceProblem(service.title)}&rdquo;</p>
             <h3 className="mt-3 text-xl font-semibold text-brand-navy md:text-2xl">{service.title}</h3>
             <p className="mt-3 leading-relaxed text-brand-ink/80">{service.description || getServiceDescription(service.title)}</p>
+            <a href={`/services/${serviceSlugs[service.title]}`} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-teal-ink hover:text-brand-navy">
+              More about {service.title} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
           </li>
         ))}
       </ol>

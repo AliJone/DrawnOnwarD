@@ -3,15 +3,17 @@ import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Linkedin, Mail } from 'lucide-react';
 import WaveDecoration from './WaveDecoration';
+import { serviceSlugs } from './ServicesData';
 
 const services = ['Web Development', 'Mobile Development', 'UI/UX Design', 'SEO', 'Tech Leads for Hire', 'Tech Consulting'];
+// Absolute hash links so they also work from the service pages
 const companyLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Why DrawnOnwarD', href: '#why' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/#about' },
+  { label: 'Why DrawnOnwarD', href: '/#why' },
+  { label: 'Pricing', href: '/#pricing' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Testimonials', href: '/#testimonials' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 const footerLink = 'text-brand-on-navy transition-colors hover:text-white hover:underline underline-offset-4';
@@ -114,7 +116,7 @@ const Footer: React.FC = () => {
       <div className="container relative mx-auto px-4 py-16 md:px-8 md:py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <a href="#top" className="inline-flex items-center gap-3">
+            <a href="/" className="inline-flex items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-white p-1">
                 <img src="/logo-96.webp" alt="" width={40} height={40} loading="lazy" decoding="async" className="h-10 w-10" />
               </span>
@@ -131,7 +133,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service}>
-                  <a href="#services" className={footerLink}>
+                  <a href={`/services/${serviceSlugs[service]}`} className={footerLink}>
                     {service}
                   </a>
                 </li>

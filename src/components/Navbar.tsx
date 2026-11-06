@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-4 md:px-8">
-        <a href="#top" className="flex items-center gap-3 text-brand-navy">
+        <a href="/" className="flex items-center gap-3 text-brand-navy">
           <img src="/logo-96.webp" alt="" width={44} height={44} className="h-11 w-11" />
           <span className="text-xl font-bold tracking-tight md:text-2xl">DrawnOnwarD</span>
           <span className="sr-only">home</span>
@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
           {navItems.map((item) => (
             <a
               key={item}
-              href={`#${item.toLowerCase()}`}
+              href={`/#${item.toLowerCase()}`}
               className="text-[15px] font-medium text-brand-ink transition-colors hover:text-brand-navy"
             >
               {item}
@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="hidden lg:block">
-          <a href="#contact" className="btn btn-primary btn-sm">
+          <a href="/#contact" className="btn btn-primary btn-sm">
             Get a free roadmap
           </a>
         </div>
@@ -83,7 +83,7 @@ const Navbar: React.FC = () => {
             {navItems.map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase()}`}
+                href={`/#${item.toLowerCase()}`}
                 className="text-2xl font-semibold text-brand-navy transition-colors hover:text-brand-teal-ink"
                 onClick={() => setMenuOpen(false)}
               >
@@ -91,7 +91,7 @@ const Navbar: React.FC = () => {
               </a>
             ))}
             <a
-              href="#contact"
+              href="/#contact"
               className="btn btn-primary mt-4"
               onClick={() => setMenuOpen(false)}
             >

@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "npx -y gh-pages@6 -d dist && node scripts/indexnow.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
     "dev": "vite",
     "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "build:dev": "vite build --mode development",

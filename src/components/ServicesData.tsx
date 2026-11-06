@@ -10,6 +10,16 @@ export interface ServiceItem {
   imageUrl?: string;
 }
 
+// URL slug for each service page
+export const serviceSlugs: Record<string, string> = {
+  "Web Development": "web-development",
+  "Mobile Development": "mobile-development",
+  "UI/UX Design": "ui-ux-design",
+  "SEO": "seo",
+  "Tech Leads for Hire": "tech-leads-for-hire",
+  "Tech Consulting": "tech-consulting"
+};
+
 // Get icon based on service title
 export const getServiceIcon = (title: string): React.ReactNode => {
   const icons: Record<string, React.ReactNode> = {

@@ -1,13 +1,17 @@
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { seoTemplates } from '@/lib/seoTemplates';
-import SEO from '@/components/SEO';
+import { getServiceIcon } from '@/components/ServicesData';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import NotFound from '@/pages/NotFound';
 
-// Service content mapping
+// Service content mapping (copy unchanged; rewritten per the content plan later)
 const serviceContent = {
   'web-development': {
     title: 'Custom Web Development',
+    icon: 'Web Development',
     heading: 'Enterprise-Grade Web Development Solutions',
     description: 'Our expert team creates scalable, high-performance web applications using modern technologies and frameworks.',
     benefits: [
@@ -27,6 +31,7 @@ const serviceContent = {
   },
   'mobile-development': {
     title: 'Mobile App Development',
+    icon: 'Mobile Development',
     heading: 'Native & Cross-Platform Mobile Applications',
     description: 'We build intuitive, feature-rich mobile applications for iOS and Android that engage users and drive business growth.',
     benefits: [
@@ -46,6 +51,7 @@ const serviceContent = {
   },
   'ui-ux-design': {
     title: 'UI/UX Design Services',
+    icon: 'UI/UX Design',
     heading: 'User-Centered Design That Converts',
     description: 'Our design team creates intuitive, beautiful interfaces that enhance user experience and drive conversions.',
     benefits: [
@@ -65,6 +71,7 @@ const serviceContent = {
   },
   'tech-leads-for-hire': {
     title: 'Tech Leads for Hire',
+    icon: 'Tech Leads for Hire',
     heading: 'Senior Technical Leadership, On Your Terms',
     description: 'Embed vetted senior engineers and team leads into your organisation on flexible engagements, without the overhead of a permanent hire.',
     benefits: [
@@ -84,6 +91,7 @@ const serviceContent = {
   },
   'seo': {
     title: 'Search Engine Optimization',
+    icon: 'SEO',
     heading: 'Data-Driven SEO Strategies That Deliver Results',
     description: 'Comprehensive SEO services to improve your website\'s visibility, increase organic traffic, and boost conversions.',
     benefits: [
@@ -103,6 +111,7 @@ const serviceContent = {
   },
   'tech-consulting': {
     title: 'Technology Consulting',
+    icon: 'Tech Consulting',
     heading: 'Strategic Technology Guidance for Business Growth',
     description: 'Expert advice to help businesses make informed technology decisions, optimize processes, and implement the right solutions.',
     benefits: [
@@ -122,76 +131,83 @@ const serviceContent = {
   }
 };
 
+type Slug = keyof typeof serviceContent;
+
 const ServiceDetailPage: React.FC = () => {
   const { serviceSlug } = useParams<{ serviceSlug: string }>();
-  const seoKey = serviceSlug?.replace(/-/g, '') as keyof typeof seoTemplates;
-  
-  // If the service doesn't exist in our mapping, handle gracefully
-  if (!serviceSlug || !serviceContent[serviceSlug as keyof typeof serviceContent]) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <h1 className="text-2xl font-bold">Service not found</h1>
-      </div>
-    );
-  }
+  const service = serviceSlug ? serviceContent[serviceSlug as Slug] : undefined;
+  const seo = serviceSlug ? seoTemplates[serviceSlug] : undefined;
 
-  const service = serviceContent[serviceSlug as keyof typeof serviceContent];
-  const seoData = seoTemplates[seoKey] || seoTemplates.webDevelopment;
+  // The prerendered head already carries the title; this keeps it right after client-side navigation
+  useEffect(() => {
+    if (seo) document.title = seo.title;
+  }, [seo]);
+
+  if (!service || !seo) return <NotFound />;
+
+  const others = (Object.entries(serviceContent) as [Slug, (typeof serviceContent)[Slug]][]).filter(([slug]) => slug !== serviceSlug);
 
   return (
-    <>
-      <SEO
-        title={seoData.title}
-        description={seoData.description}
-        keywords={seoData.keywords}
-        canonical={seoData.canonical}
-        structuredData={seoData.structuredData}
-      />
-      <div className="container mx-auto px-4 py-16 max-w-4xl">
-        {/* H1 heading with primary keyword */}
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">{service.title}</h1>
-        
-        {/* H2 heading with secondary keywords */}
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-8">{service.heading}</h2>
-        
-        <div className="prose prose-lg max-w-none mb-12">
-          <p className="text-xl leading-relaxed mb-8">{service.description}</p>
-          
-          {/* H3 headings for subsections */}
-          <h3 className="text-xl font-semibold mb-4">Key Benefits</h3>
-          <ul className="space-y-2 mb-8">
-            {service.benefits.map((benefit, index) => (
-              <li key={index} className="flex items-start">
-                <span className="mr-2 text-primary">✓</span>
-                <span>{benefit}</span>
-              </li>
-            ))}
-          </ul>
-          
-          <h3 className="text-xl font-semibold mb-4">Our Process</h3>
-          <ol className="space-y-4 mb-8">
-            {service.process.map((step, index) => (
-              <li key={index} className="flex items-start">
-                <span className="mr-2 font-bold">{index + 1}.</span>
-                <span>{step}</span>
-              </li>
-            ))}
-          </ol>
-          
-          {/* Call to action */}
-          <div className="bg-gray-100 p-8 rounded-lg border border-gray-200 text-center">
-            <h3 className="text-xl font-semibold mb-2">Ready to discuss your project?</h3>
-            <p className="mb-6">Contact us for a free consultation and let's bring your vision to life.</p>
-            <a 
-              href="#contact" 
-              className="bg-primary text-white py-2 px-6 rounded-md hover:bg-primary/80 transition-colors"
-            >
-              Get in Touch
+    <div className="min-h-screen">
+      <Navbar />
+      <main className="container mx-auto max-w-4xl px-4 pb-20 pt-32 md:px-8 md:pt-40">
+        <a href="/#services" className="inline-flex items-center gap-2 text-sm font-medium text-brand-teal-ink hover:text-brand-navy">
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" /> All services
+        </a>
+        <div className="mt-6 text-brand-navy">{getServiceIcon(service.icon)}</div>
+        <h1 className="display-heading mt-4 text-4xl md:text-6xl">{service.title}</h1>
+        <span aria-hidden="true" className="teal-rule mt-5" />
+        <h2 className="mt-8 text-2xl font-semibold text-brand-navy md:text-3xl">{service.heading}</h2>
+        <p className="mt-6 text-lg leading-relaxed text-brand-ink/80 md:text-xl">{service.description}</p>
+
+        <h3 className="mt-12 text-xl font-semibold text-brand-navy">Key benefits</h3>
+        <ul className="mt-4 space-y-3">
+          {service.benefits.map((benefit) => (
+            <li key={benefit} className="flex items-start gap-3 text-brand-ink">
+              <Check className="mt-1 h-5 w-5 shrink-0 text-brand-teal-ink" aria-hidden="true" />
+              <span>{benefit}</span>
+            </li>
+          ))}
+        </ul>
+
+        <h3 className="mt-12 text-xl font-semibold text-brand-navy">Our process</h3>
+        <ol className="mt-4 space-y-3">
+          {service.process.map((step, index) => (
+            <li key={step} className="flex items-start gap-4 text-brand-ink">
+              <span aria-hidden="true" className="display-heading inline-flex h-9 w-9 shrink-0 items-center justify-center bg-brand-teal text-lg text-brand-navy">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span className="pt-1.5">{step}</span>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-14 rounded-2xl bg-brand-navy p-8 text-center text-white md:p-10">
+          <h3 className="display-heading text-3xl text-white md:text-4xl">Ready to discuss your project?</h3>
+          <p className="mx-auto mt-4 max-w-xl text-brand-on-navy">
+            Tell us what you are building. You get a free project roadmap, with scope, timeline and a budget range, within one business day.
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <a href="/#contact" className="btn btn-teal">
+              Get your free project roadmap <ArrowRight className="h-5 w-5" aria-hidden="true" />
             </a>
+            <a href="/#pricing" className="btn btn-light">See what an MVP costs</a>
           </div>
         </div>
-      </div>
-    </>
+
+        <h3 className="mt-14 text-sm font-semibold uppercase tracking-[0.18em] text-brand-teal-ink">Other services</h3>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+          {others.map(([slug, other]) => (
+            <li key={slug}>
+              <a href={`/services/${slug}`} className="flex items-center justify-between rounded-xl border border-brand-line bg-white px-5 py-4 font-medium text-brand-navy hover:border-brand-navy">
+                {other.title} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </main>
+      <Footer />
+    </div>
   );
 };
 
