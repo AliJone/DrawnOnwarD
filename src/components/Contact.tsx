@@ -17,6 +17,9 @@ const promises = [
   'You own the code and IP from day one. NDA on request. No equity asked',
 ];
 
+// Attribution options; "ChatGPT / AI assistant" is how we measure AI-sourced leads
+const sources = ['ChatGPT / AI assistant', 'Google', 'LinkedIn', 'Referral', 'Clutch', 'Other'];
+
 const inputClass =
   'w-full rounded-md border-2 border-brand-line bg-white px-4 py-3 text-brand-ink placeholder:text-brand-muted/70 transition-colors focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/20';
 
@@ -26,10 +29,11 @@ const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    source: '',
     message: '',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -39,7 +43,7 @@ const Contact: React.FC = () => {
     // No endpoint configured: hand off to the visitor's mail client so no lead is lost
     if (!FORM_ENDPOINT) {
       const subject = encodeURIComponent(`Project roadmap request from ${formData.name}`);
-      const body = encodeURIComponent(`${formData.message}\n\nReply to: ${formData.email}`);
+      const body = encodeURIComponent(`${formData.message}\n\nHeard about us via: ${formData.source}\nReply to: ${formData.email}`);
       window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
       return;
     }
@@ -55,7 +59,7 @@ const Contact: React.FC = () => {
         title: "Request received!",
         description: "We'll send your project roadmap within one business day.",
       });
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', source: '', message: '' });
     } catch {
       toast({
         title: "Something went wrong",
@@ -144,6 +148,25 @@ const Contact: React.FC = () => {
                   className={inputClass}
                   placeholder="john@example.com"
                 />
+              </div>
+
+              <div>
+                <label htmlFor="source" className="mb-1.5 block text-sm font-medium text-brand-ink">
+                  How did you hear about us?
+                </label>
+                <select
+                  id="source"
+                  name="source"
+                  value={formData.source}
+                  onChange={handleChange}
+                  required
+                  className={inputClass}
+                >
+                  <option value="" disabled>Select one</option>
+                  {sources.map((source) => (
+                    <option key={source} value={source}>{source}</option>
+                  ))}
+                </select>
               </div>
 
               <div>

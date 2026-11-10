@@ -28,7 +28,7 @@ const portfolioData: Project[] = [
       "Website Development",
       "UI/UX Design"
     ],
-    description: "DrawnOnward took on the ambitious project of transforming PreMed.pk into the quintessential online hub for medical exam preparation. Recognizing the need for a centralized, accessible, and cost-effective educational resource, we reimagined the platform to cater to the aspirational needs of future healthcare professionals."
+    description: "DrawnOnwarD took on the ambitious project of transforming PreMed.pk into the quintessential online hub for medical exam preparation. Recognizing the need for a centralized, accessible, and cost-effective educational resource, we reimagined the platform to cater to the aspirational needs of future healthcare professionals."
   },
   {
     id: "asd1293uvbvcbbd3",
@@ -36,7 +36,7 @@ const portfolioData: Project[] = [
     imageUrl: "/images/nehjul-balagha.webp",
     type: "Mobile Apps",
     industry: "Mobile · Education",
-    description: "Drawn Onward embarked on this heartfelt project to craft the Nahj Al-Balagha app, bringing the profound teachings of Imam Ali (a.s) into the modern digital realm. Leveraging the robust security of Firebase Auth and the seamless efficiency of Firebase Firestore, we've created an app that not only connects you to tradition but also ensures a reliable and user-friendly experience for accessing wisdom on the go.",
+    description: "DrawnOnwarD embarked on this heartfelt project to craft the Nahj Al-Balagha app, bringing the profound teachings of Imam Ali (a.s) into the modern digital realm. Leveraging the robust security of Firebase Auth and the seamless efficiency of Firebase Firestore, we've created an app that not only connects you to tradition but also ensures a reliable and user-friendly experience for accessing wisdom on the go.",
     responsibility: [
       "Mobile Development",
       "UI/UX Design"
@@ -49,7 +49,7 @@ const portfolioData: Project[] = [
     type: "Website",
     industry: "Retail SaaS",
     url: "https://asaanretail.io/",
-    description: "Asaan Retail represents the pinnacle of inventory management, fulfillment, and accounting software for multi-channel commerce. It stands as a testament to DrawnOnward's commitment to simplifying complex business processes. This initiative reshapes how businesses manage their inventory, fulfill orders, and maintain financial stability in the ever-evolving world of commerce.",
+    description: "Asaan Retail represents the pinnacle of inventory management, fulfillment, and accounting software for multi-channel commerce. It stands as a testament to DrawnOnwarD's commitment to simplifying complex business processes. This initiative reshapes how businesses manage their inventory, fulfill orders, and maintain financial stability in the ever-evolving world of commerce.",
     responsibility: [
       "Website Development",
       "UI/UX Design"
@@ -76,7 +76,7 @@ const testimonialData = [
     company: "Founder and CEO, Asaan Retail",
     companyUrl: "https://asaanretail.io/",
     linkedinUrl: "https://www.linkedin.com/in/saqlain-raza-bhimani/",
-    testimoni: "DrawnOnward's expertise elevated Asaan Retail's online presence with a stunning, efficient website that truly understands customer needs.",
+    testimoni: "DrawnOnwarD's expertise elevated Asaan Retail's online presence with a stunning, efficient website that truly understands customer needs.",
     imageUrl: "/images/saqlain.webp"
   },
   {
@@ -84,7 +84,7 @@ const testimonialData = [
     company: "Co-founder and CEO, PreMed.PK",
     companyUrl: "https://www.premed.pk/",
     linkedinUrl: "https://www.linkedin.com/in/fahd-niaz-shaikh/",
-    testimoni: "DrawnOnward transformed our vision into reality with exceptional skill, creating a user-friendly and innovative website for Premed.pk.",
+    testimoni: "DrawnOnwarD transformed our vision into reality with exceptional skill, creating a user-friendly and innovative website for Premed.pk.",
     imageUrl: "/images/fahad.webp"
   },
   {
@@ -93,7 +93,7 @@ const testimonialData = [
     companyUrl: "https://www.premed.pk/",
     linkedinUrl: "https://www.linkedin.com/in/hasnain-mankani/",
     // TODO: draft wording. Get Hasnain's sign-off and a photo before deploying.
-    testimoni: "DrawnOnward rebuilt PreMed.PK into a platform that now serves over 100,000 students. They understood what medical students actually needed and delivered it without drama."
+    testimoni: "DrawnOnwarD rebuilt PreMed.PK into a platform that now serves over 100,000 students. They understood what medical students actually needed and delivered it without drama."
   }
 ];
 

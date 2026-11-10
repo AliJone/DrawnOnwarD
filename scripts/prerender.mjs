@@ -27,6 +27,8 @@ function withHead(html, meta) {
   html = swap(html, /<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${attr(meta.title)}" />`, 'og:title');
   html = swap(html, /<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${attr(meta.description)}" />`, 'og:description');
   html = swap(html, /<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${meta.canonical}" />`, 'og:url');
+  html = swap(html, /<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${attr(meta.title)}" />`, 'twitter:title');
+  html = swap(html, /<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${attr(meta.description)}" />`, 'twitter:description');
   const json = JSON.stringify(meta.structuredData).replace(/</g, '\\u003c');
   html = swap(html, /<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">${json}</script>`, 'JSON-LD');
   return html;
