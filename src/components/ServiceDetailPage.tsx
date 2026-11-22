@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ExternalLink, Quote } from 'lucide-react';
 import { seoTemplates } from '@/lib/seoTemplates';
 import { getServiceIcon } from '@/components/ServicesData';
 import Navbar from '@/components/Navbar';
@@ -8,8 +8,25 @@ import Footer from '@/components/Footer';
 import CtaBand from '@/components/CtaBand';
 import NotFound from '@/pages/NotFound';
 
+interface ServiceTestimonial {
+  quote: string;
+  name: string;
+  role: string;
+  companyUrl: string;
+}
+
+interface ServiceContent {
+  title: string;
+  icon: string;
+  heading: string;
+  description: string;
+  benefits: string[];
+  process: string[];
+  testimonial?: ServiceTestimonial;
+}
+
 // Service content mapping (copy unchanged; rewritten per the content plan later)
-const serviceContent = {
+const serviceContent: Record<string, ServiceContent> = {
   'web-development': {
     title: 'Custom Web Development',
     icon: 'Web Development',
@@ -88,7 +105,13 @@ const serviceContent = {
       'Onboarding and team integration',
       'Delivery with regular check-ins',
       'Scale, extend, or hand over as needed'
-    ]
+    ],
+    testimonial: {
+      quote: 'We recently hired technical leads through DrawnOnwarD, and the experience has been exceptional. Their leads seamlessly integrated into our company culture right from the start. They brought excellent technical knowledge to the table and consistently demonstrated a willingness to go above and beyond what was expected. A special shoutout to Jone and Hamza, who worked directly with us. Their dedication and expertise were invaluable to our project\'s success. Highly recommend DrawnOnwarD for anyone looking for top-tier tech talent!',
+      name: 'Zain',
+      role: 'CEO, SayHisaab',
+      companyUrl: 'https://sayhisaab.com/',
+    }
   },
   'seo': {
     title: 'Search Engine Optimization',
@@ -132,11 +155,10 @@ const serviceContent = {
   }
 };
 
-type Slug = keyof typeof serviceContent;
 
 const ServiceDetailPage: React.FC = () => {
   const { serviceSlug } = useParams<{ serviceSlug: string }>();
-  const service = serviceSlug ? serviceContent[serviceSlug as Slug] : undefined;
+  const service = serviceSlug ? serviceContent[serviceSlug] : undefined;
   const seo = serviceSlug ? seoTemplates[serviceSlug] : undefined;
 
   // The prerendered head already carries the title; this keeps it right after client-side navigation
@@ -146,7 +168,7 @@ const ServiceDetailPage: React.FC = () => {
 
   if (!service || !seo) return <NotFound />;
 
-  const others = (Object.entries(serviceContent) as [Slug, (typeof serviceContent)[Slug]][]).filter(([slug]) => slug !== serviceSlug);
+  const others = Object.entries(serviceContent).filter(([slug]) => slug !== serviceSlug);
 
   return (
     <div className="min-h-screen">
@@ -182,6 +204,25 @@ const ServiceDetailPage: React.FC = () => {
             </li>
           ))}
         </ol>
+
+        {service.testimonial && (
+          <figure className="mt-14 rounded-2xl border border-brand-line bg-brand-paper p-7 md:p-9">
+            <Quote className="h-8 w-8 text-brand-teal" aria-hidden="true" />
+            <blockquote className="mt-4 text-lg leading-relaxed text-brand-ink">&ldquo;{service.testimonial.quote}&rdquo;</blockquote>
+            <figcaption className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-brand-muted">
+              <span className="font-semibold text-brand-navy">{service.testimonial.name}</span>
+              <span>{service.testimonial.role}</span>
+              <a
+                href={service.testimonial.companyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-semibold text-brand-teal-ink underline decoration-brand-teal/60 underline-offset-4 hover:text-brand-navy"
+              >
+                Visit live site <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+              </a>
+            </figcaption>
+          </figure>
+        )}
 
         <CtaBand />
 

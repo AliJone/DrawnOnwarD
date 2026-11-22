@@ -127,7 +127,7 @@ export const seoTemplates: Record<string, PageSeo> = {
     slug: 'tech-leads-for-hire',
     name: 'Tech Leads for Hire',
     serviceType: 'Staff augmentation',
-    lastmod: '2026-11-07',
+    lastmod: '2026-11-22',
     title: 'Hire Senior Developers and Tech Leads for Your Startup | DrawnOnwarD',
     description: 'Senior developers and tech leads embedded in your team on flexible terms (staff augmentation). Engineers averaging 8 years of experience, matched to your stack, priced per engagement.',
     keywords: 'hire senior developers, staff augmentation for startups, tech leads for hire, dedicated development team, hire a tech lead',

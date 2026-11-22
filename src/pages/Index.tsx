@@ -94,6 +94,14 @@ const testimonialData = [
     linkedinUrl: "https://www.linkedin.com/in/hasnain-mankani/",
     // TODO: draft wording. Get Hasnain's sign-off and a photo before deploying.
     testimoni: "DrawnOnwarD rebuilt PreMed.PK into a platform that now serves over 100,000 students. They understood what medical students actually needed and delivered it without drama."
+  },
+  {
+    name: "Zain",
+    company: "CEO, SayHisaab",
+    companyUrl: "https://sayhisaab.com/",
+    label: "Tech Leads for Hire",
+    featured: true,
+    testimoni: "We recently hired technical leads through DrawnOnwarD, and the experience has been exceptional. Their leads seamlessly integrated into our company culture right from the start. They brought excellent technical knowledge to the table and consistently demonstrated a willingness to go above and beyond what was expected. A special shoutout to Jone and Hamza, who worked directly with us. Their dedication and expertise were invaluable to our project\'s success. Highly recommend DrawnOnwarD for anyone looking for top-tier tech talent!"
   }
 ];
 
@@ -110,7 +118,7 @@ const serviceData: ServiceItem[] = [
 // Trust row under the hero CTAs: verifiable proof only (no ratings until we have them)
 const proofItems: ProofItem[] = [
   { label: "100,000+ students use a platform we built", href: "#project-asd1293uasdads1" },
-  { label: "3 founders on the record", href: "#testimonials" },
+  { label: "4 founders on the record", href: "#testimonials" },
   { label: "Replies within one business day" },
 ];
 
