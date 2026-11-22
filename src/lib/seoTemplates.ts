@@ -195,7 +195,7 @@ export const staticPages: PageSeo[] = [
     path: '/about/',
     pageType: 'AboutPage',
     breadcrumb: 'About',
-    lastmod: '2026-11-07',
+    lastmod: '2026-11-22',
     title: 'About DrawnOnwarD: a 10-person software agency for startup founders',
     description: 'Founded in 2024 by Ali Jone Merchant. Ten people, engineers averaging 8 years, based in Pakistan with engineers in the USA, Germany and Estonia. How we work, our stack and our pricing.',
     keywords: 'DrawnOnwarD, software agency Pakistan, startup software development team, senior engineers, MVP development agency about',
@@ -203,7 +203,7 @@ export const staticPages: PageSeo[] = [
   staticPage({
     path: '/privacy/',
     breadcrumb: 'Privacy Policy',
-    lastmod: '2026-11-07',
+    lastmod: '2026-11-22',
     priority: '0.3',
     title: 'Privacy Policy | DrawnOnwarD',
     description: 'What DrawnOnwarD collects when you contact us, how it is used, who else sees it, cookies, retention and your rights.',
@@ -212,7 +212,7 @@ export const staticPages: PageSeo[] = [
   staticPage({
     path: '/terms/',
     breadcrumb: 'Terms of Service',
-    lastmod: '2026-11-07',
+    lastmod: '2026-11-22',
     priority: '0.3',
     title: 'Terms of Service | DrawnOnwarD',
     description: 'Terms for using drawnonward.org, and the project terms founders can rely on: fixed quote, milestone payments, weekly demos, full code and IP ownership.',
@@ -279,7 +279,7 @@ const toRoute = (page: PageSeo): PrerenderRoute => ({ path: page.path, lastmod: 
 
 // Every URL the build writes, the sitemap lists and IndexNow submits
 export const prerenderRoutes: PrerenderRoute[] = [
-  { path: '/', lastmod: '2026-11-05', meta: null },
+  { path: '/', lastmod: '2026-11-22', meta: null },
   ...Object.values(seoTemplates).map(toRoute),
   ...staticPages.map(toRoute),
   ...guides.map((a) => toRoute(articlePage(a))),

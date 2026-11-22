@@ -17,7 +17,7 @@ const howWeWork = [
   'Free project roadmap within one business day: scope, timeline and a budget range you can take to your co-founder or investors.',
   'Fixed price, agreed before any code is written.',
   'Weekly live demos and milestone payments, so you see working software before you pay.',
-  'You own 100% of the code and IP from the first commit. NDA on request. We never ask for equity.',
+  'You have access to the code repository from day one and own 100% of the code and IP from the first commit. NDA on request. We never ask for equity.',
   'The engineers on your first call are the engineers who build your product.',
 ];
 
