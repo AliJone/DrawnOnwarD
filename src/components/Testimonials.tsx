@@ -9,6 +9,7 @@ export interface Testimonial {
   imageUrl?: string;
   linkedinUrl?: string;
   companyUrl: string;
+  postUrl?: string; // the client's own public post about the work, when one exists
   label?: string; // eyebrow on a featured card, e.g. the service the quote is about
   featured?: boolean; // renders full-width beneath the grid instead of as a column card
 }
@@ -38,11 +39,23 @@ const SiteLink = ({ testimonial }: { testimonial: Testimonial }) => (
     href={testimonial.companyUrl}
     target="_blank"
     rel="noopener noreferrer"
-    className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brand-teal-ink underline decoration-brand-teal/60 underline-offset-4 transition-colors hover:text-brand-navy"
+    className="inline-flex items-center gap-1 text-sm font-semibold text-brand-teal-ink underline decoration-brand-teal/60 underline-offset-4 transition-colors hover:text-brand-navy"
   >
     Visit live site
     <span className="sr-only">: {new URL(testimonial.companyUrl).hostname}</span>
     <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+  </a>
+);
+
+const PostLink = ({ href }: { href: string }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center gap-1 text-sm font-semibold text-brand-teal-ink underline decoration-brand-teal/60 underline-offset-4 transition-colors hover:text-brand-navy"
+  >
+    Their LinkedIn post about us
+    <Linkedin className="h-3.5 w-3.5" aria-hidden="true" />
   </a>
 );
 
@@ -55,7 +68,10 @@ const Attribution = ({ testimonial }: { testimonial: Testimonial }) => (
     <div>
       <NameLine testimonial={testimonial} />
       <p className="text-sm text-brand-muted">{testimonial.company}</p>
-      <SiteLink testimonial={testimonial} />
+      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+        <SiteLink testimonial={testimonial} />
+        {testimonial.postUrl && <PostLink href={testimonial.postUrl} />}
+      </div>
     </div>
   </div>
 );

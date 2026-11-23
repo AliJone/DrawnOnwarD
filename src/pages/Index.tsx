@@ -78,6 +78,7 @@ const testimonialData = [
     company: "Founder and CEO, Asaan Retail",
     companyUrl: "https://asaanretail.io/",
     linkedinUrl: "https://www.linkedin.com/in/saqlain-raza-bhimani/",
+    postUrl: "https://www.linkedin.com/posts/asaanretail_asaanretail-drawnonward-websitedevelopment-activity-7214894291360370688-0nn6",
     testimoni: "DrawnOnwarD's expertise elevated Asaan Retail's online presence with a stunning, efficient website that truly understands customer needs.",
     imageUrl: "/images/saqlain.webp"
   },

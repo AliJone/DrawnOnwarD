@@ -36,6 +36,7 @@ export const work: Article[] = [
         heading: 'At a glance',
         bullets: [
           'Client: [Asaan Retail](https://asaanretail.io/), inventory, order fulfilment and accounting software for retailers selling across several channels',
+          'Launched July 2024, announced by Asaan Retail in a [LinkedIn post](https://www.linkedin.com/posts/asaanretail_asaanretail-drawnonward-websitedevelopment-activity-7214894291360370688-0nn6) naming DrawnOnwarD as its web development partner; SEO, tracking and conversion work continued after launch',
           'Founder and CEO: [Saqlain Raza](https://www.linkedin.com/in/saqlain-raza-bhimani/). DrawnOnwarD\'s first client',
           'Scope: UI/UX redesign, website rebuild in Next.js with server-side rendering, performance, technical SEO, analytics, a lead form connected to the sales CRM',
           'Before: almost no leads from the website. After: 20+ organic leads a month, consistently, and 50+ leads from ads in the month after launch',
@@ -82,6 +83,12 @@ export const work: Article[] = [
         heading: 'What the founder says',
         paragraphs: [
           '"DrawnOnwarD\'s expertise elevated Asaan Retail\'s online presence with a stunning, efficient website that truly understands customer needs." Saqlain Raza, Founder and CEO, Asaan Retail ([LinkedIn](https://www.linkedin.com/in/saqlain-raza-bhimani/)).',
+        ],
+      },
+      {
+        heading: 'In Asaan Retail\'s words',
+        paragraphs: [
+          'When the site launched in July 2024, Asaan Retail posted on its company page: "We would like to extend a heartfelt thank you to DrawnOnwarD for their exceptional work as our Web Development Partner. Their expertise and dedication have been instrumental in creating our new, sleeker, and user-friendly website." [Read the post on LinkedIn](https://www.linkedin.com/posts/asaanretail_asaanretail-drawnonward-websitedevelopment-activity-7214894291360370688-0nn6).',
         ],
       },
       {
