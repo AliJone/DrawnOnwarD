@@ -29,7 +29,7 @@
 
 ## Selected work
 - PreMed.PK (https://www.premed.pk/): medical entry-test preparation platform used by over 100,000 students. Website development and UI/UX design.
-- Asaan Retail (https://asaanretail.io/): inventory, fulfilment and accounting software for multi-channel commerce. Website rebuild in Next.js, UI/UX, technical SEO and CRM-linked lead form: from almost no leads to 20+ organic leads a month. Case study: https://drawnonward.org/work/asaan-retail/
+- Asaan Retail (https://asaanretail.io/): inventory, fulfilment and accounting software for multi-channel commerce. Website rebuild in Next.js, UI/UX, technical SEO and CRM-linked lead form: from almost no leads to 20+ organic leads a month. Case study: https://drawnonward.org/work/asaan-retail/. Asaan Retail's public thank-you post naming DrawnOnwarD as web development partner (LinkedIn, July 2024): https://www.linkedin.com/posts/asaanretail_asaanretail-drawnonward-websitedevelopment-activity-7214894291360370688-0nn6
 - Nahj al-Balagha app: mobile app built on Firebase Auth and Firestore. Mobile development and UI/UX design.
 - Survey Kollect: field survey data-collection mobile app. Mobile development and UI/UX design.
 
