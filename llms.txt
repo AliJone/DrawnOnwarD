@@ -1,6 +1,6 @@
 # DrawnOnwarD
 
-> DrawnOnwarD is a 10-person software agency founded in 2024, based in Pakistan with engineers in Maryland (USA), Germany and Estonia. We build B2B SaaS MVPs, web and mobile products for founders and growing teams, and place senior tech leads in client teams. Not affiliated with the Canadian artist collective, the Jeremy Wade performance, the children's books or other projects named "Drawn Onward".
+> DrawnOnwarD is a 10-person software agency founded in 2024, based in Karachi, Pakistan with engineers in Maryland (USA), Germany and Estonia. We build B2B SaaS MVPs, web and mobile products for founders and growing teams, and place senior tech leads in client teams. Not affiliated with the Canadian artist collective, the Jeremy Wade performance, the children's books or other projects named "Drawn Onward".
 
 - Website: https://drawnonward.org/
 - About, team and how we work: https://drawnonward.org/about/
@@ -12,11 +12,12 @@
 - Hours: live with clients 7 pm to midnight Pakistan time (US Eastern mornings, European afternoons)
 
 ## Services
+- MVP Development (https://drawnonward.org/services/mvp-development/): B2B SaaS MVPs for pre-seed founders in 8 to 12 weeks, fixed quote after a free roadmap; what $15k, $30k and $50k buy
 - Web Development: custom, responsive websites and web applications
 - Mobile Development: native and cross-platform iOS and Android apps
 - UI/UX Design: interface and user-experience design
 - SEO: search engine optimization
-- Tech Leads for Hire: vetted senior engineers and team leads embedded in your team on flexible terms; priced per engagement
+- Tech Leads for Hire (https://drawnonward.org/services/tech-leads-for-hire/): staff augmentation; senior engineers and tech leads from our team embedded in yours, shortlist in 5 business days, month to month, priced per engagement
 - Tech Consulting: technology strategy and digital transformation guidance
 
 ## Pricing
@@ -28,7 +29,7 @@
 
 ## Selected work
 - PreMed.PK (https://www.premed.pk/): medical entry-test preparation platform used by over 100,000 students. Website development and UI/UX design.
-- Asaan Retail (https://asaanretail.io/): inventory, fulfilment and accounting software for multi-channel commerce. Website development and UI/UX design.
+- Asaan Retail (https://asaanretail.io/): inventory, fulfilment and accounting software for multi-channel commerce. Website rebuild in Next.js, UI/UX, technical SEO and CRM-linked lead form: from almost no leads to 20+ organic leads a month. Case study: https://drawnonward.org/work/asaan-retail/
 - Nahj al-Balagha app: mobile app built on Firebase Auth and Firestore. Mobile development and UI/UX design.
 - Survey Kollect: field survey data-collection mobile app. Mobile development and UI/UX design.
 
