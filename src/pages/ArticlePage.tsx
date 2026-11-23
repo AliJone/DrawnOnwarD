@@ -5,6 +5,7 @@ import { guides, work } from '@/content/articles';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CtaBand from '@/components/CtaBand';
+import RichText from '@/components/RichText';
 import NotFound from '@/pages/NotFound';
 
 interface ArticlePageProps {
@@ -63,14 +64,14 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ kind }) => {
           <section key={section.heading ?? index} className="mt-10">
             {section.heading && <h2 className="text-2xl font-semibold text-brand-navy">{section.heading}</h2>}
             {section.paragraphs?.map((paragraph) => (
-              <p key={paragraph} className="mt-4 leading-relaxed text-brand-ink/80">{paragraph}</p>
+              <p key={paragraph} className="mt-4 leading-relaxed text-brand-ink/80"><RichText text={paragraph} /></p>
             ))}
             {section.bullets && (
               <ul className="mt-4 space-y-2">
                 {section.bullets.map((bullet) => (
                   <li key={bullet} className="flex items-start gap-3 text-brand-ink">
                     <Check className="mt-1 h-5 w-5 shrink-0 text-brand-teal-ink" aria-hidden="true" />
-                    <span>{bullet}</span>
+                    <span><RichText text={bullet} /></span>
                   </li>
                 ))}
               </ul>

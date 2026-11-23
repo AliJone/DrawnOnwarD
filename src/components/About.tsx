@@ -8,7 +8,7 @@ import WaveDecoration from './WaveDecoration';
 const facts = [
   {
     icon: Puzzle,
-    text: 'DrawnOnwarD is a ten-person software agency founded in 2024. We are based in Pakistan with engineers in Maryland (USA), Germany and Estonia, and our engineers average 8 years of experience.',
+    text: 'DrawnOnwarD is a ten-person software agency founded in 2024. We are based in Karachi, Pakistan with engineers in Maryland (USA), Germany and Estonia, and our engineers average 8 years of experience.',
   },
   {
     icon: Handshake,

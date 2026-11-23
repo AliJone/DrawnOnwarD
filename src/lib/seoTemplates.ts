@@ -1,4 +1,5 @@
 import { guides, work, type Article } from '@/content/articles';
+import { serviceContent } from '@/content/services';
 
 export interface PageSeo {
   path: string;
@@ -39,12 +40,14 @@ interface ServiceSeoInput {
   description: string;
   keywords: string;
   lastmod: string;
+  offers?: { name: string; minPrice: number; maxPrice: number }[]; // priced bands, USD
 }
 
 // One Service node per page, tied to the organization and website defined on the homepage.
 // Trailing slashes match what GitHub Pages serves, so canonical and sitemap URLs never redirect.
 const servicePage = (s: ServiceSeoInput): PageSeo => {
   const url = `${SITE}/services/${s.slug}/`;
+  const faqs = serviceContent[s.slug]?.faqs;
   return {
     path: `/services/${s.slug}/`,
     title: s.title,
@@ -64,6 +67,15 @@ const servicePage = (s: ServiceSeoInput): PageSeo => {
           url,
           provider: { '@id': ORG_ID },
           areaServed: 'Worldwide',
+          ...(s.offers
+            ? {
+                offers: s.offers.map((o) => ({
+                  '@type': 'Offer',
+                  name: o.name,
+                  priceSpecification: { '@type': 'PriceSpecification', minPrice: o.minPrice, maxPrice: o.maxPrice, priceCurrency: 'USD' },
+                })),
+              }
+            : {}),
         },
         {
           '@type': 'WebPage',
@@ -75,6 +87,20 @@ const servicePage = (s: ServiceSeoInput): PageSeo => {
           isPartOf: { '@id': WEBSITE_ID },
           about: { '@id': `${SITE}/#service-${s.slug}` },
         },
+        // Questions and answers come from the page content, so schema and copy cannot drift apart
+        ...(faqs
+          ? [
+              {
+                '@type': 'FAQPage',
+                '@id': `${url}#faq`,
+                mainEntity: faqs.map((f) => ({
+                  '@type': 'Question',
+                  name: f.question,
+                  acceptedAnswer: { '@type': 'Answer', text: f.answer },
+                })),
+              },
+            ]
+          : []),
         breadcrumbs([
           { name: 'Home', item: `${SITE}/` },
           { name: 'Services', item: `${SITE}/#services` },
@@ -87,6 +113,20 @@ const servicePage = (s: ServiceSeoInput): PageSeo => {
 
 // Keyed by URL slug so the lookup in ServiceDetailPage is the route parameter itself
 export const seoTemplates: Record<string, PageSeo> = {
+  'mvp-development': servicePage({
+    slug: 'mvp-development',
+    name: 'MVP Development',
+    serviceType: 'MVP development',
+    lastmod: '2026-11-23',
+    title: 'MVP Development Services for B2B SaaS Startups | DrawnOnwarD',
+    description: 'A 10-person agency builds your B2B SaaS MVP in 8 to 12 weeks for a fixed $15k–40k quote after a free roadmap. Senior engineers, weekly demos, you own the code.',
+    keywords: 'mvp development services, mvp development company, build an mvp for a startup, b2b saas mvp development, mvp development cost, startup mvp agency',
+    offers: [
+      { name: 'Scoped build', minPrice: 5000, maxPrice: 15000 },
+      { name: 'B2B SaaS MVP', minPrice: 15000, maxPrice: 40000 },
+      { name: 'Data or API platform', minPrice: 40000, maxPrice: 80000 },
+    ],
+  }),
   'web-development': servicePage({
     slug: 'web-development',
     name: 'Web Development',
@@ -127,10 +167,10 @@ export const seoTemplates: Record<string, PageSeo> = {
     slug: 'tech-leads-for-hire',
     name: 'Tech Leads for Hire',
     serviceType: 'Staff augmentation',
-    lastmod: '2026-11-22',
+    lastmod: '2026-11-23',
     title: 'Hire Senior Developers and Tech Leads for Your Startup | DrawnOnwarD',
-    description: 'Senior developers and tech leads embedded in your team on flexible terms (staff augmentation). Engineers averaging 8 years of experience, matched to your stack, priced per engagement.',
-    keywords: 'hire senior developers, staff augmentation for startups, tech leads for hire, dedicated development team, hire a tech lead',
+    description: 'Staff augmentation for startups: senior developers and tech leads from a 10-person team, 8 years\' average experience, shortlist in 5 days, month to month.',
+    keywords: 'hire senior developers, staff augmentation for startups, tech leads for hire, hire a tech lead, dedicated development team, toptal alternative for startups',
   }),
   'tech-consulting': servicePage({
     slug: 'tech-consulting',
@@ -279,7 +319,7 @@ const toRoute = (page: PageSeo): PrerenderRoute => ({ path: page.path, lastmod: 
 
 // Every URL the build writes, the sitemap lists and IndexNow submits
 export const prerenderRoutes: PrerenderRoute[] = [
-  { path: '/', lastmod: '2026-11-22', meta: null },
+  { path: '/', lastmod: '2026-11-23', meta: null },
   ...Object.values(seoTemplates).map(toRoute),
   ...staticPages.map(toRoute),
   ...guides.map((a) => toRoute(articlePage(a))),

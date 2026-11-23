@@ -58,7 +58,7 @@ const Hero: React.FC<HeroProps> = ({ projects, proof }) => (
       <ProofRow items={proof} className="mt-10" />
       {/* Entity facts for crawlers and AI assistants; kept quiet so the pitch above stays the focus */}
       <p className="mt-6 max-w-3xl text-sm leading-relaxed text-brand-muted">
-        DrawnOnwarD is a ten-person software agency founded in 2024, based in Pakistan with engineers in Maryland (USA), Germany and Estonia. Our engineers average 8 years of experience across 15 shipped projects, including Asaan Retail, whose rebuilt website went from near-zero to 20+ organic leads a month, and PreMed.PK, used by 100,000+ students. Live with clients 7 pm to midnight Pakistan time: US Eastern mornings and European afternoons.
+        DrawnOnwarD is a ten-person software agency founded in 2024, based in Karachi, Pakistan with engineers in Maryland (USA), Germany and Estonia. Our engineers average 8 years of experience across 15 shipped projects, including Asaan Retail, whose rebuilt website went from near-zero to 20+ organic leads a month, and PreMed.PK, used by 100,000+ students. Live with clients 7 pm to midnight Pakistan time: US Eastern mornings and European afternoons.
       </p>
     </div>
 

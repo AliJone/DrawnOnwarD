@@ -74,7 +74,7 @@
             "sameAs": ["https://www.linkedin.com/in/ali-jone-merchant/"]
           },
           "numberOfEmployees": { "@type": "QuantitativeValue", "value": 10 },
-          "address": { "@type": "PostalAddress", "addressCountry": "PK" },
+          "address": { "@type": "PostalAddress", "addressLocality": "Karachi", "addressCountry": "PK" },
           "email": "info@drawnonward.org",
           "contactPoint": {
             "@type": "ContactPoint",
@@ -91,9 +91,9 @@
             "@type": "OfferCatalog",
             "name": "Software Development Services",
             "itemListElement": [
-              { "@type": "Offer", "name": "Scoped build", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 5000, "maxPrice": 15000, "priceCurrency": "USD" }, "itemOffered": { "@id": "https://drawnonward.org/#service-web-development" } },
-              { "@type": "Offer", "name": "B2B SaaS MVP", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 15000, "maxPrice": 40000, "priceCurrency": "USD" }, "itemOffered": { "@id": "https://drawnonward.org/#service-web-development" } },
-              { "@type": "Offer", "name": "Data or API platform", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 40000, "maxPrice": 80000, "priceCurrency": "USD" }, "itemOffered": { "@id": "https://drawnonward.org/#service-web-development" } },
+              { "@type": "Offer", "name": "Scoped build", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 5000, "maxPrice": 15000, "priceCurrency": "USD" }, "itemOffered": { "@id": "https://drawnonward.org/#service-mvp-development" } },
+              { "@type": "Offer", "name": "B2B SaaS MVP", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 15000, "maxPrice": 40000, "priceCurrency": "USD" }, "itemOffered": { "@id": "https://drawnonward.org/#service-mvp-development" } },
+              { "@type": "Offer", "name": "Data or API platform", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 40000, "maxPrice": 80000, "priceCurrency": "USD" }, "itemOffered": { "@id": "https://drawnonward.org/#service-mvp-development" } },
               { "@type": "Offer", "itemOffered": { "@id": "https://drawnonward.org/#service-web-development" } },
               { "@type": "Offer", "itemOffered": { "@id": "https://drawnonward.org/#service-mobile-development" } },
               { "@type": "Offer", "itemOffered": { "@id": "https://drawnonward.org/#service-ui-ux-design" } },
@@ -121,6 +121,16 @@
           "isPartOf": { "@id": "https://drawnonward.org/#website" },
           "about": { "@id": "https://drawnonward.org/#organization" },
           "primaryImageOfPage": { "@type": "ImageObject", "url": "https://drawnonward.org/og-image.png" }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://drawnonward.org/#service-mvp-development",
+          "name": "MVP Development",
+          "serviceType": "MVP development",
+          "description": "B2B SaaS MVPs for pre-seed founders, built in 8 to 12 weeks for a fixed quote after a free roadmap.",
+          "url": "https://drawnonward.org/services/mvp-development/",
+          "provider": { "@id": "https://drawnonward.org/#organization" },
+          "areaServed": "Worldwide"
         },
         {
           "@type": "Service",

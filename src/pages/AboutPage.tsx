@@ -36,7 +36,7 @@ const AboutPage: React.FC = () => (
       <h1 className="display-heading mt-6 text-4xl md:text-6xl">About DrawnOnwarD</h1>
       <span aria-hidden="true" className="teal-rule mt-5" />
       <p className="mt-8 text-lg leading-relaxed text-brand-ink/80 md:text-xl">
-        DrawnOnwarD is a ten-person software agency founded in 2024. We build B2B SaaS MVPs, web apps and mobile apps for startup founders and growing teams, and we place senior tech leads inside client engineering teams. We are based in Pakistan, with engineers in Maryland (USA), Germany and Estonia.
+        DrawnOnwarD is a ten-person software agency founded in 2024. We build B2B SaaS MVPs, web apps and mobile apps for startup founders and growing teams, and we place senior tech leads inside client engineering teams. We are based in Karachi, Pakistan, with engineers in Maryland (USA), Germany and Estonia.
       </p>
 
       <h2 className={h2}>Who runs it</h2>
@@ -87,7 +87,7 @@ const AboutPage: React.FC = () => (
 
       <h2 className={h2}>Where and when we work</h2>
       <p className={body}>
-        Our team works from Pakistan, Maryland (USA), Germany and Estonia. We are live with clients from 7 pm to midnight Pakistan time, which covers US Eastern mornings and European afternoons, and we work asynchronously the rest of the day.
+        Our team works from Karachi (Pakistan), Maryland (USA), Germany and Estonia. We are live with clients from 7 pm to midnight Pakistan time, which covers US Eastern mornings and European afternoons, and we work asynchronously the rest of the day.
       </p>
 
       <h2 className={h2}>What we build with</h2>
@@ -98,7 +98,8 @@ const AboutPage: React.FC = () => (
       <h2 className={h2}>Pricing</h2>
       <p className={body}>
         Scoped builds from $5,000 to $15,000. B2B SaaS MVPs from $15,000 to $40,000. Data or API platforms from $40,000 to $80,000. Tech leads for hire are priced per engagement. Full detail in the{' '}
-        <a href="/#pricing" className="font-semibold text-brand-navy underline underline-offset-4">pricing section</a>.
+        <a href="/#pricing" className="font-semibold text-brand-navy underline underline-offset-4">pricing section</a> and on the{' '}
+        <a href="/services/mvp-development/" className="font-semibold text-brand-navy underline underline-offset-4">MVP development page</a>.
       </p>
 
       <h2 className={h2}>Not to be confused with</h2>

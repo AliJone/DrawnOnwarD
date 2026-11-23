@@ -13,6 +13,7 @@ export interface Project {
   responsibility: string[];
   url?: string;
   result?: string;
+  caseStudyUrl?: string;
 }
 
 interface PortfolioProps {
@@ -110,6 +111,16 @@ const Portfolio = ({ projects }: PortfolioProps) => {
                       Visit live site
                       <span className="sr-only">: {project.title}</span>
                       <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    </a>
+                  )}
+                  {project.caseStudyUrl && (
+                    <a
+                      href={project.caseStudyUrl}
+                      className="inline-flex items-center gap-1.5 font-semibold text-brand-navy underline decoration-brand-teal decoration-2 underline-offset-4 transition-colors hover:text-brand-teal-ink"
+                    >
+                      Read the case study
+                      <span className="sr-only">: {project.title}</span>
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </a>
                   )}
                 </div>

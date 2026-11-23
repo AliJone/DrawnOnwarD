@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Globe, Smartphone, Palette, Search, Users, Briefcase } from 'lucide-react';
+import { Globe, Smartphone, Palette, Search, Users, Briefcase, Rocket } from 'lucide-react';
 
 // Types for the service data
 export interface ServiceItem {
@@ -12,6 +12,7 @@ export interface ServiceItem {
 
 // URL slug for each service page
 export const serviceSlugs: Record<string, string> = {
+  "MVP Development": "mvp-development",
   "Web Development": "web-development",
   "Mobile Development": "mobile-development",
   "UI/UX Design": "ui-ux-design",
@@ -23,6 +24,7 @@ export const serviceSlugs: Record<string, string> = {
 // Get icon based on service title
 export const getServiceIcon = (title: string): React.ReactNode => {
   const icons: Record<string, React.ReactNode> = {
+    "MVP Development": <Rocket className="h-6 w-6" />,
     "Web Development": <Globe className="h-6 w-6" />,
     "Mobile Development": <Smartphone className="h-6 w-6" />,
     "UI/UX Design": <Palette className="h-6 w-6" />,

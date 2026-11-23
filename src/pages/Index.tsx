@@ -49,6 +49,8 @@ const portfolioData: Project[] = [
     type: "Website",
     industry: "Retail SaaS",
     url: "https://asaanretail.io/",
+    result: "From almost no leads to 20+ organic leads a month",
+    caseStudyUrl: "/work/asaan-retail/",
     description: "Asaan Retail represents the pinnacle of inventory management, fulfillment, and accounting software for multi-channel commerce. It stands as a testament to DrawnOnwarD's commitment to simplifying complex business processes. This initiative reshapes how businesses manage their inventory, fulfill orders, and maintain financial stability in the ever-evolving world of commerce.",
     responsibility: [
       "Website Development",

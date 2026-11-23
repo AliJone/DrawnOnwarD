@@ -2,159 +2,45 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Check, ExternalLink, Quote } from 'lucide-react';
 import { seoTemplates } from '@/lib/seoTemplates';
+import { serviceContent, ServiceTable } from '@/content/services';
 import { getServiceIcon } from '@/components/ServicesData';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CtaBand from '@/components/CtaBand';
+import RichText from '@/components/RichText';
 import NotFound from '@/pages/NotFound';
 
-interface ServiceTestimonial {
-  quote: string;
-  name: string;
-  role: string;
-  companyUrl: string;
-}
+const formatDate = (iso: string) =>
+  new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 
-interface ServiceContent {
-  title: string;
-  icon: string;
-  heading: string;
-  description: string;
-  benefits: string[];
-  process: string[];
-  testimonial?: ServiceTestimonial;
-}
+const h3 = 'mt-12 text-xl font-semibold text-brand-navy';
 
-// Service content mapping (copy unchanged; rewritten per the content plan later)
-const serviceContent: Record<string, ServiceContent> = {
-  'web-development': {
-    title: 'Custom Web Development',
-    icon: 'Web Development',
-    heading: 'Enterprise-Grade Web Development Solutions',
-    description: 'Our expert team creates scalable, high-performance web applications using modern technologies and frameworks.',
-    benefits: [
-      'Responsive designs that work on all devices',
-      'Performance-optimized code for fast loading times',
-      'Scalable architecture that grows with your business',
-      'Secure development practices to protect your data',
-      'SEO-friendly structure for better visibility'
-    ],
-    process: [
-      'Discovery and requirements gathering',
-      'UI/UX design and prototyping',
-      'Development and testing',
-      'Deployment and launch',
-      'Ongoing support and maintenance'
-    ]
-  },
-  'mobile-development': {
-    title: 'Mobile App Development',
-    icon: 'Mobile Development',
-    heading: 'Native & Cross-Platform Mobile Applications',
-    description: 'We build intuitive, feature-rich mobile applications for iOS and Android that engage users and drive business growth.',
-    benefits: [
-      'Native performance on iOS and Android platforms',
-      'Cross-platform solutions for cost efficiency',
-      'Engaging user interfaces that drive retention',
-      'Integration with device features and APIs',
-      'Ongoing maintenance and version updates'
-    ],
-    process: [
-      'Concept and strategy development',
-      'UX/UI design and prototyping',
-      'Core development and feature implementation',
-      'Testing across devices and platforms',
-      'App store submission and optimization'
-    ]
-  },
-  'ui-ux-design': {
-    title: 'UI/UX Design Services',
-    icon: 'UI/UX Design',
-    heading: 'User-Centered Design That Converts',
-    description: 'Our design team creates intuitive, beautiful interfaces that enhance user experience and drive conversions.',
-    benefits: [
-      'Improved user satisfaction and engagement',
-      'Higher conversion rates through optimized flows',
-      'Consistent branding across all touchpoints',
-      'Accessible designs that work for all users',
-      'Data-driven design decisions'
-    ],
-    process: [
-      'User research and personas',
-      'Information architecture',
-      'Wireframing and prototyping',
-      'Visual design and branding',
-      'Usability testing and refinement'
-    ]
-  },
-  'tech-leads-for-hire': {
-    title: 'Tech Leads for Hire',
-    icon: 'Tech Leads for Hire',
-    heading: 'Senior Technical Leadership, On Your Terms',
-    description: 'Embed vetted senior engineers and team leads into your organisation on flexible engagements, without the overhead of a permanent hire.',
-    benefits: [
-      'Hand-picked senior engineers and team leads',
-      'Flexible engagements from a few weeks to long-term',
-      'Onboarded and productive within days, not months',
-      'Seamless integration with your tools and workflows',
-      'Scale your team up or down as priorities change'
-    ],
-    process: [
-      'Requirements and skills assessment',
-      'Candidate shortlist and interviews',
-      'Onboarding and team integration',
-      'Delivery with regular check-ins',
-      'Scale, extend, or hand over as needed'
-    ],
-    testimonial: {
-      quote: 'We recently hired technical leads through DrawnOnwarD, and the experience has been exceptional. Their leads seamlessly integrated into our company culture right from the start. They brought excellent technical knowledge to the table and consistently demonstrated a willingness to go above and beyond what was expected. A special shoutout to Jone and Hamza, who worked directly with us. Their dedication and expertise were invaluable to our project\'s success. Highly recommend DrawnOnwarD for anyone looking for top-tier tech talent!',
-      name: 'Zain',
-      role: 'CEO, SayHisaab',
-      companyUrl: 'https://sayhisaab.com/',
-    }
-  },
-  'seo': {
-    title: 'Search Engine Optimization',
-    icon: 'SEO',
-    heading: 'Data-Driven SEO Strategies That Deliver Results',
-    description: 'Comprehensive SEO services to improve your website\'s visibility, increase organic traffic, and boost conversions.',
-    benefits: [
-      'Higher rankings in search engine results',
-      'Increased organic traffic to your website',
-      'Better qualified leads and conversions',
-      'Improved user experience and engagement',
-      'Long-term sustainable growth'
-    ],
-    process: [
-      'Technical SEO audit',
-      'Keyword research and strategy',
-      'On-page optimization',
-      'Content development and optimization',
-      'Link building and off-page SEO'
-    ]
-  },
-  'tech-consulting': {
-    title: 'Technology Consulting',
-    icon: 'Tech Consulting',
-    heading: 'Strategic Technology Guidance for Business Growth',
-    description: 'Expert advice to help businesses make informed technology decisions, optimize processes, and implement the right solutions.',
-    benefits: [
-      'Optimized technology stack and processes',
-      'Reduced costs through efficient solutions',
-      'Scalable architecture that supports growth',
-      'Competitive advantage through innovation',
-      'Risk mitigation and security improvements'
-    ],
-    process: [
-      'Technology assessment and discovery',
-      'Strategy development and roadmapping',
-      'Solution architecture and design',
-      'Implementation support and guidance',
-      'Performance monitoring and optimization'
-    ]
-  }
-};
-
+// First column is the row label; the table scrolls sideways on narrow screens like the About team table
+const Table: React.FC<{ table: ServiceTable }> = ({ table }) => (
+  <div className="mt-6 overflow-x-auto rounded-2xl border border-brand-line bg-white">
+    <table className="w-full min-w-[640px] text-left text-sm">
+      <thead className="bg-brand-paper text-xs uppercase tracking-[0.12em] text-brand-muted">
+        <tr>
+          {table.columns.map((column, i) => (
+            <th key={i} scope="col" className="px-4 py-3 font-semibold">{column}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {table.rows.map((row) => (
+          <tr key={row[0]} className="border-t border-brand-line align-top text-brand-ink">
+            {row.map((cell, i) => (
+              i === 0
+                ? <th key={i} scope="row" className="px-4 py-3 text-left font-medium text-brand-navy">{cell}</th>
+                : <td key={i} className="px-4 py-3 leading-relaxed">{cell}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    {table.note && <p className="border-t border-brand-line px-4 py-3 text-sm text-brand-muted">{table.note}</p>}
+  </div>
+);
 
 const ServiceDetailPage: React.FC = () => {
   const { serviceSlug } = useParams<{ serviceSlug: string }>();
@@ -178,12 +64,36 @@ const ServiceDetailPage: React.FC = () => {
           <ArrowLeft className="h-4 w-4" aria-hidden="true" /> All services
         </a>
         <div className="mt-6 text-brand-navy">{getServiceIcon(service.icon)}</div>
-        <h1 className="display-heading mt-4 text-4xl md:text-6xl">{service.title}</h1>
+        {service.h1 && <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-brand-teal-ink">{service.title}</p>}
+        <h1 className="display-heading mt-4 text-4xl md:text-6xl">{service.h1 ?? service.title}</h1>
         <span aria-hidden="true" className="teal-rule mt-5" />
         <h2 className="mt-8 text-2xl font-semibold text-brand-navy md:text-3xl">{service.heading}</h2>
         <p className="mt-6 text-lg leading-relaxed text-brand-ink/80 md:text-xl">{service.description}</p>
+        <p className="mt-4 text-sm text-brand-muted">Last updated {formatDate(seo.lastmod)}.</p>
 
-        <h3 className="mt-12 text-xl font-semibold text-brand-navy">Key benefits</h3>
+        {service.facts && (
+          <dl className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+            {service.facts.map((fact) => (
+              <div key={fact.label} className="rounded-2xl border border-brand-line bg-brand-paper p-5">
+                <dd className="display-heading text-2xl text-brand-navy md:text-3xl">{fact.value}</dd>
+                <dt className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-brand-muted">{fact.label}</dt>
+              </div>
+            ))}
+          </dl>
+        )}
+
+        {service.intro?.map((paragraph) => (
+          <p key={paragraph} className="mt-6 leading-relaxed text-brand-ink/80"><RichText text={paragraph} /></p>
+        ))}
+
+        {service.caseStudy && (
+          <a href={service.caseStudy.href} className="mt-8 flex items-center justify-between gap-4 rounded-2xl border border-brand-line bg-brand-paper px-5 py-4 font-medium text-brand-navy hover:border-brand-navy">
+            <span><span className="mr-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-teal-ink">Case study</span>{service.caseStudy.label}</span>
+            <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+          </a>
+        )}
+
+        <h3 className={h3}>{service.benefitsHeading ?? 'Key benefits'}</h3>
         <ul className="mt-4 space-y-3">
           {service.benefits.map((benefit) => (
             <li key={benefit} className="flex items-start gap-3 text-brand-ink">
@@ -193,7 +103,7 @@ const ServiceDetailPage: React.FC = () => {
           ))}
         </ul>
 
-        <h3 className="mt-12 text-xl font-semibold text-brand-navy">Our process</h3>
+        <h3 className={h3}>{service.processHeading ?? 'Our process'}</h3>
         <ol className="mt-4 space-y-3">
           {service.process.map((step, index) => (
             <li key={step} className="flex items-start gap-4 text-brand-ink">
@@ -204,6 +114,26 @@ const ServiceDetailPage: React.FC = () => {
             </li>
           ))}
         </ol>
+
+        {service.sections?.map((section) => (
+          <section key={section.heading}>
+            <h3 className={h3}>{section.heading}</h3>
+            {section.paragraphs?.map((paragraph) => (
+              <p key={paragraph} className="mt-4 leading-relaxed text-brand-ink/80"><RichText text={paragraph} /></p>
+            ))}
+            {section.table && <Table table={section.table} />}
+            {section.bullets && (
+              <ul className="mt-4 space-y-2">
+                {section.bullets.map((bullet) => (
+                  <li key={bullet} className="flex items-start gap-3 text-brand-ink">
+                    <Check className="mt-1 h-5 w-5 shrink-0 text-brand-teal-ink" aria-hidden="true" />
+                    <span><RichText text={bullet} /></span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        ))}
 
         {service.testimonial && (
           <figure className="mt-14 rounded-2xl border border-brand-line bg-brand-paper p-7 md:p-9">
@@ -222,6 +152,20 @@ const ServiceDetailPage: React.FC = () => {
               </a>
             </figcaption>
           </figure>
+        )}
+
+        {service.faqs && (
+          <section>
+            <h3 className={h3}>Frequently asked questions</h3>
+            <dl className="mt-4 divide-y divide-brand-line rounded-2xl border border-brand-line bg-white">
+              {service.faqs.map((faq) => (
+                <div key={faq.question} className="px-5 py-5">
+                  <dt className="font-semibold text-brand-navy">{faq.question}</dt>
+                  <dd className="mt-2 leading-relaxed text-brand-ink/80">{faq.answer}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
         )}
 
         <CtaBand />

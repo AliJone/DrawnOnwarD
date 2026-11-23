@@ -4,7 +4,7 @@ import { Linkedin, Mail } from 'lucide-react';
 import WaveDecoration from './WaveDecoration';
 import { serviceSlugs } from './ServicesData';
 
-const services = ['Web Development', 'Mobile Development', 'UI/UX Design', 'SEO', 'Tech Leads for Hire', 'Tech Consulting'];
+const services = ['MVP Development', 'Web Development', 'Mobile Development', 'UI/UX Design', 'SEO', 'Tech Leads for Hire', 'Tech Consulting'];
 // Absolute links so they also work from the service, guide and policy pages
 const companyLinks = [
   { label: 'About', href: '/about/' },

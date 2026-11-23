@@ -33,6 +33,10 @@ const Pricing: React.FC<PricingProps> = ({ bands }) => (
       <p className="mt-8 max-w-3xl leading-relaxed text-brand-ink/80">
         Each MVP team pairs a senior tech lead with a full-stack engineer, a product designer and a QA engineer. DevOps and a certified project manager are shared across projects. Tech leads for hire are priced per engagement: ask us.
       </p>
+      <p className="mt-3 max-w-3xl leading-relaxed text-brand-ink/80">
+        What each band includes, line by line, is on the{' '}
+        <a href="/services/mvp-development/" className="font-semibold text-brand-navy underline decoration-brand-teal decoration-2 underline-offset-4 hover:text-brand-teal-ink">MVP development page</a>.
+      </p>
     </div>
   </section>
 );
